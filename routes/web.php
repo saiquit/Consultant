@@ -26,3 +26,13 @@ Route::group([
         Route::get('/{slug}', 'ServiceController@show')->name('show');
     });
 });
+
+
+Route::group([
+    'namespace' => 'App\Http\Controllers\Backend',
+    'as' => 'admin.',
+    'prefix' => 'admin'
+], function () {
+    Route::get('/', 'AdminController@home')->name('home');
+    Route::resource('services', 'ServiceController');
+});

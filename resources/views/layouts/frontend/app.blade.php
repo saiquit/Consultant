@@ -34,6 +34,7 @@
     <main>
         @yield('content')
         @include('layouts.frontend.partials.footer-form')
+        @include('layouts.frontend.partials.contact-modal')
     </main>
     @include('layouts.frontend.partials.footer')
     <!-- JS here -->

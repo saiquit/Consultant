@@ -43,27 +43,14 @@
                                         <li><a href="{{ route('home', []) }}">Home</a></li>
                                         <li><a href="{{ route('about', []) }}">About</a></li>
                                         <li><a href="{{ route('services.index', []) }}">Services</a></li>
-                                        <li><a href="cases.html">Cases</a></li>
-                                        <li><a href="blog.html">Blog</a>
-                                            <ul class="submenu">
-                                                <li><a href="blog.html">Blog</a></li>
-                                                <li><a href="single-blog.html">Blog Details</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="#">Pages</a>
-                                            <ul class="submenu">
-                                                <li><a href="contact.html">Contact</a></li>
-                                                <li><a href="elements.html">Element</a></li>
-                                                <li><a href="case_details.html">Case Details</a></li>
-                                            </ul>
-                                        </li>
                                     </ul>
                                 </nav>
                             </div>
                         </div>
                         <div class="col-xl-2 col-lg-3 col-md-3">
                             <div class="header-right-btn f-right d-none d-lg-block">
-                                <a href="#" class="btn header-btn">Contact Now</a>
+                                <a href="#" data-toggle="modal" data-target="#contact-form-modal"
+                                    class="btn header-btn">Contact Now</a>
                             </div>
                         </div>
                         <!-- Mobile Menu -->

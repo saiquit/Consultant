@@ -15,15 +15,15 @@
                 <div class="row">
                     <div class="col-4 center">
                         <h2>800+</h2>
-                        <p>{{$service->name}}</p>
+                        <p class="text-white">{{$service->name}}</p>
                     </div>
                     <div class="col-4 center">
                         <h2>800+</h2>
-                        <p>{{$service->name}}</p>
+                        <p class="text-white">{{$service->name}}</p>
                     </div>
                     <div class="col-4 center">
                         <h2>800+</h2>
-                        <p>{{$service->name}}</p>
+                        <p class="text-white">{{$service->name}}</p>
                     </div>
                 </div>
 
