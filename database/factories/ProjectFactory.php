@@ -14,7 +14,7 @@ class ProjectFactory extends Factory
      */
     public function definition()
     {
-        $title = $this->faker->company . ' Services';
+        $title = $this->faker->company . ' Project';
         return [
             'name' => $title,
             'slug' => Str::slug($title),

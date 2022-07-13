@@ -6,7 +6,7 @@
         <div class="row">
             <div class="col-md-12 col-sm-12">
                 <div class="title">
-                    <h4>{{$service->name}}</h4>
+                    <h4>{{$project->name}}</h4>
                 </div>
                 {{-- <nav aria-label="breadcrumb" role="navigation">
                     <ol class="breadcrumb">
@@ -27,24 +27,12 @@
                         </div>
                         <h4 class="p-4">About</h4>
                         <div class="blog-caption">
-                            {!! $service->about !!}
+                            {!! $project->description !!}
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4 col-sm-12">
-                    <div class="card-box mb-30">
-                        <h5 class="pd-20 h5 mb-0">Latest Projects</h5>
-                        <div class="latest-post">
-                            <ul>
-                                @foreach ($service->projects as $project)
-                                <li>
-                                    <h4><a href="#">{{$project->name}}</a></h4>
-                                    <span>{{$project->created_at->diffForHumans()}}</span>
-                                </li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    </div>
+
                 </div>
             </div>
         </div>

@@ -20,7 +20,7 @@ Route::group([
     Route::get('/about', 'HomeController@about')->name('about');
     Route::group([
         'as' => 'services.',
-        'prefix' => 'services'
+        'prefix' => 'services',
     ], function () {
         Route::get('/', 'ServiceController@index')->name('index');
         Route::get('/{slug}', 'ServiceController@show')->name('show');
@@ -31,8 +31,13 @@ Route::group([
 Route::group([
     'namespace' => 'App\Http\Controllers\Backend',
     'as' => 'admin.',
-    'prefix' => 'admin'
+    'prefix' => 'admin',
+    'middleware' => ['auth']
 ], function () {
     Route::get('/', 'AdminController@home')->name('home');
     Route::resource('services', 'ServiceController');
+    Route::resource('projects', 'ProjectController');
+    Route::resource('users', 'UserController');
 });
+
+Auth::routes();

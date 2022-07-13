@@ -88,9 +88,9 @@
 
 <div class="left-side-bar">
     <div class="brand-logo">
-        <a href="index.html">
-            <img src="vendors/images/deskapp-logo.svg" alt="" class="dark-logo">
-            <img src="vendors/images/deskapp-logo-white.svg" alt="" class="light-logo">
+        <a href="{{ route('home') }}">
+            <img src="/b/vendors/images/deskapp-logo.svg" alt="" class="dark-logo">
+            <img src="/b/vendors/images/deskapp-logo-white.svg" alt="" class="light-logo">
         </a>
         <div class="close-sidebar" data-toggle="left-sidebar-close">
             <i class="ion-close-round"></i>
@@ -99,9 +99,15 @@
     <div class="menu-block customscroll">
         <div class="sidebar-menu">
             <ul id="accordion-menu">
+                <li>
+                    <a href="{{ route('admin.home') }}"
+                        class="dropdown-toggle no-arrow @if (Request::is('admin')) active @endif">
+                        <span class="micon dw dw-house"></span><span class="mtext">Dashboard</span>
+                    </a>
+                </li>
                 <li class="dropdown">
                     <a href="javascript:;" class="dropdown-toggle">
-                        <span class="micon dw dw-house-1"></span><span class="mtext">Services</span>
+                        <span class="micon dw dw-factory"></span><span class="mtext">Services</span>
                     </a>
                     <ul class="submenu">
                         <li><a class="@if (Request::is('admin/services')) active @endif"
@@ -110,10 +116,27 @@
                                 href="{{ route('admin.services.create') }}">Add New Service</a></li>
                     </ul>
                 </li>
-                <li>
-                    <a href="invoice.html" class="dropdown-toggle no-arrow">
-                        <span class="micon dw dw-invoice"></span><span class="mtext">Invoice</span>
+                <li class="dropdown">
+                    <a href="javascript:;" class="dropdown-toggle">
+                        <span class="micon dw dw-library"></span><span class="mtext">Projects</span>
                     </a>
+                    <ul class="submenu">
+                        <li><a class="@if (Request::is('admin/projects')) active @endif"
+                                href="{{ route('admin.projects.index') }}">All Projects</a></li>
+                        <li><a class="@if (Request::is('admin/projects/create')) active @endif"
+                                href="{{ route('admin.projects.create') }}">Add New Project</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="javascript:;" class="dropdown-toggle">
+                        <span class="micon dw dw-library"></span><span class="mtext">Users</span>
+                    </a>
+                    <ul class="submenu">
+                        <li><a class="@if (Request::is('admin/users')) active @endif"
+                                href="{{ route('admin.users.index') }}">All users</a></li>
+                        <li><a class="@if (Request::is('admin/users/create')) active @endif"
+                                href="{{ route('admin.users.create') }}">Add New User</a></li>
+                    </ul>
                 </li>
             </ul>
         </div>
