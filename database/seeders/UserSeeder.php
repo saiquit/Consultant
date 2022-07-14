@@ -13,7 +13,7 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\User::factory(10)->create();
+        \App\Models\User::factory(10)->hasExpertises(10)->create();
         \App\Models\User::factory([
             'name' => 'admin',
             'email' => 'admin@admin.com',

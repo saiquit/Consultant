@@ -15,29 +15,19 @@
             <thead>
                 <tr>
                     <th class="table-plus datatable-nosort">Name</th>
-                    <th>Type</th>
-                    <th>Email</th>
+                    <th>Count</th>
+                    <th>Description</th>
                     <th>Start Date</th>
                     <th class="datatable-nosort">Action</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($users as $user)
+                @foreach ($expertises as $expertise)
                 <tr>
-                    <td class="table-plus">{{$user->name}}</td>
-                    <td>
-                        @if ($user->type == 'expert')
-                        <h2 class="badge text-capitalize badge-success"> {{$user->type}}
-                            <span class="badge badge-light">{{$user->expertises()->count()}}</span>
-                        </h2>
-                        @elseif ($user->type == 'company')
-                        <h2 class="badge text-capitalize badge-info"> {{$user->type}}</h2>
-                        @elseif ($user->type == 'user')
-                        <h2 class="badge text-capitalize badge-danger"> {{$user->type}}</h2>
-                        @endif
-                    </td>
-                    <td>{{$user->email}} </td>
-                    <td>{{$user->created_at->diffForHumans()}}</td>
+                    <td class="table-plus">{{$expertise->name}}</td>
+                    <td class="">{{Str::substr($expertise->description, 0, 100) . '...'}}</td>
+                    <td> {{$expertise->users()->count()}}</td>
+                    <td>{{$expertise->created_at->diffForHumans()}}</td>
                     <td>
                         <div class="dropdown">
                             <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#"
@@ -45,7 +35,7 @@
                                 <i class="dw dw-more"></i>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-                                <a class="dropdown-item" href="{{ route('admin.users.show', $user) }}"><i
+                                <a class="dropdown-item" href="{{ route('admin.expertises.show', $expertise) }}"><i
                                         class="dw dw-eye"></i> View</a>
                                 <a class="dropdown-item" href="#"><i class="dw dw-edit2"></i> Edit</a>
                                 <a class="dropdown-item" href="#"><i class="dw dw-delete-3"></i> Delete</a>

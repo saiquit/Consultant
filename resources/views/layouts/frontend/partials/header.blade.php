@@ -44,6 +44,7 @@
                                         <li><a href="{{ route('about', []) }}">About</a></li>
                                         <li><a href="{{ route('services.index', []) }}">Services</a></li>
                                         @auth
+                                        <li><a class="text-info" href="{{ route('admin.home', []) }}">Dashboard</a></li>
                                         <li><a href="{{ route('logout', []) }}"
                                                 onclick="event.preventDefault(); document.getElementById('frm-logout').submit();">Logout</a>
                                         </li>

@@ -3,17 +3,16 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-use App\Models\Project;
-use App\Models\Service;
+use App\Models\Expertise;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
-class ProjectController extends Controller
+class ExpertiseController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('role:admin,company', ['except' => ['index', 'show']]);
+        $this->middleware('role:admin', ['except' => []]);
     }
     /**
      * Display a listing of the resource.
@@ -22,8 +21,8 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $projects = Project::all()->sortBy('created_at');
-        return view('backend.projects.index', compact('projects'));
+        $expertises = Expertise::all()->sortBy('created_at');
+        return view('backend.expertise.index', compact('expertises'));
     }
 
     /**
@@ -33,8 +32,7 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        $services = Service::all(['name', 'id']);
-        return view('backend.projects.create', compact('services'));
+        return view('backend.expertise.create');
     }
 
     /**
@@ -43,46 +41,44 @@ class ProjectController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Service $service)
+    public function store(Request $request)
     {
         if ($request->hasAny(['name', 'description'])) {
             $validation = Validator::make($request->all(), [
                 'name' => 'string|max:255|required',
-                'description' => 'string|required',
-                'service' => 'required|integer'
+                'name' => 'string|required',
             ]);
             if ($validation->fails()) {
                 return back()->withErrors($validation);
             } else {
-                $service = $service->findOrFail($request->service);
-                $project = $service->projects()->create([
+                $expertise = Expertise::create([
                     'name' => $request->name,
                     'slug' =>  Str::slug($request->name),
-                    'description' => $request->description,
+                    'description' => $request->description
                 ]);
             }
-            return view('backend.projects.view', compact('project'));
+            return redirect()->route('admin.expertises.show', compact('expertise'));
         }
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Project  $project
+     * @param  \App\Models\Expertise  $expertise
      * @return \Illuminate\Http\Response
      */
-    public function show(Project $project)
+    public function show(Expertise $expertise)
     {
-        return view('backend.projects.view', compact('project'));
+        return view('backend.expertise.view', compact('expertise'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Project  $project
+     * @param  \App\Models\Expertise  $expertise
      * @return \Illuminate\Http\Response
      */
-    public function edit(Project $project)
+    public function edit(Expertise $expertise)
     {
         //
     }
@@ -91,10 +87,10 @@ class ProjectController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Project  $project
+     * @param  \App\Models\Expertise  $expertise
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Project $project)
+    public function update(Request $request, Expertise $expertise)
     {
         //
     }
@@ -102,10 +98,10 @@ class ProjectController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Project  $project
+     * @param  \App\Models\Expertise  $expertise
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Project $project)
+    public function destroy(Expertise $expertise)
     {
         //
     }

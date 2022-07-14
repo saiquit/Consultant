@@ -8,6 +8,10 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('role:admin');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -26,7 +30,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return abort(404,);
+        // return view('backend.users.create');
     }
 
     /**
@@ -37,7 +42,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return abort(404,);
     }
 
     /**
@@ -48,7 +53,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        //
+        return view('backend.users.view', compact('user'));
     }
 
     /**

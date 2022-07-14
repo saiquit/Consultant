@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -38,6 +39,7 @@ Route::group([
     Route::resource('services', 'ServiceController');
     Route::resource('projects', 'ProjectController');
     Route::resource('users', 'UserController');
+    Route::resource('expertises', 'ExpertiseController');
 });
 
 Auth::routes();

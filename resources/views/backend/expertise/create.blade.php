@@ -4,11 +4,11 @@
 <div class="pd-20 card-box mb-30">
     <div class="clearfix">
         <div class="pull-left">
-            <h4 class="text-blue h4">Add a New User</h4>
+            <h4 class="text-blue h4">Add a New Project</h4>
             <p class="mb-30">All bootstrap element classies</p>
         </div>
     </div>
-    <form action="{{ route('admin.users.store') }}" method="POST">
+    <form action="{{ route('admin.expertises.store') }}" method="POST">
         @csrf
         <div class="form-group row">
             <label class="col-sm-12 col-md-2 col-form-label">Name</label>
@@ -23,18 +23,6 @@
                     </button>
                 </div>
                 @endif
-            </div>
-        </div>
-        <div class="form-group row">
-            <label class="col-sm-12 col-md-2 col-form-label">Project</label>
-            <div class="col-md-10 col-sm-12">
-                <div class="form-group">
-                    <select name="service" class="selectpicker form-control" data-size="5">
-                        {{-- @foreach ($services as $service)
-                        <option value="{{$service->id}}">{{$service->name}}</option>
-                        @endforeach --}}
-                    </select>
-                </div>
             </div>
         </div>
         <div class="form-group row">
