@@ -40,6 +40,7 @@ Route::group([
     Route::resource('projects', 'ProjectController');
     Route::resource('users', 'UserController');
     Route::resource('expertises', 'ExpertiseController');
+    Route::resource('profile', 'ProfileController');
 });
 
 Auth::routes();

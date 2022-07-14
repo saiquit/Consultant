@@ -32,7 +32,11 @@
                     </div>
                 </div>
                 <div class="col-md-4 col-sm-12">
-
+                    <ul class="list-group">
+                        @foreach ($expertise->users as $user)
+                        <li class="list-group-item ">{{$user->name}}</li>
+                        @endforeach
+                    </ul>
                 </div>
             </div>
         </div>
