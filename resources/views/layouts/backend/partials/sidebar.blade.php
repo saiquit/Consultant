@@ -139,8 +139,6 @@
                     <ul class="submenu">
                         <li><a class="@if (Request::is('admin/users')) active @endif"
                                 href="{{ route('admin.users.index') }}">All users</a></li>
-                        <li><a class="@if (Request::is('admin/users/create')) active @endif"
-                                href="{{ route('admin.users.create') }}">Add New User</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">

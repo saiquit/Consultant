@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Backend\ProfileController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -41,6 +42,16 @@ Route::group([
     Route::resource('users', 'UserController');
     Route::resource('expertises', 'ExpertiseController');
     Route::resource('profile', 'ProfileController');
+    // Request a project
+    Route::post('/reqForProject/{project}', 'ComController@reqForProject')->name('reqForProject');
+    Route::post('/approve/{project}', 'ComController@approve')->name('approve');
+    Route::post('/ajax/exp', 'ComController@ajaxExpert')->name('ajax_exp');
+    //Mark Read Notfication
+    Route::post('/markAsRead', 'ComController@mark')->name('mark');
+    //Email
+    Route::post('/response/project/{project}', 'EmailController@projectRequestResponse')->name('res-pro');
+    //img_upload
+    Route::post('profile_img', 'ProfileController@img_update')->name('profile_img');
 });
 
 Auth::routes();

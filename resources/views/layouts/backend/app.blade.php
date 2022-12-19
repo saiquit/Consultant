@@ -13,7 +13,7 @@
 
     <!-- Mobile Specific Metas -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
+    <meta name="_token" content="{{ csrf_token() }}">
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
         rel="stylesheet">
@@ -47,23 +47,42 @@
             </div>
         </div>
     </div> --}}
-
-
     @include('layouts.backend.partials.header')
     @include('layouts.backend.partials.sidebar')
     <div class="mobile-menu-overlay"></div>
 
     <div class="main-container">
+        @if($errors->any())
+            {{ implode('', $errors->all('<div class="alert alert-danger" role="alert">:message</div>')) }}
+            @endif
         <div class="pd-ltr-20">
             @yield('content')
         </div>
     </div>
     <!-- js -->
     <script src="{{ asset('b/vendors/scripts/core.js') }}"></script>
-    <script src="{{ asset('b/vendors/scripts/script.min.js') }}"></script>
+    <script src="{{ asset('b/vendors/scripts/script.js') }}"></script>
     <script src="{{ asset('b/vendors/scripts/process.js') }}"></script>
     <script src="{{ asset('b/vendors/scripts/layout-settings.js') }}"></script>
     @stack('js')
+    <script>
+        function sendMarkRequest(id = null) {
+        return $.ajax("{{ route('admin.mark') }}", {
+            method: 'POST',
+            data: {
+                _token:  $('meta[name="_token"]').attr('content'),
+                id
+            }
+        });
+    }
+         $('#mark-all').click(function() {
+            console.log('clicked');
+            let request = sendMarkRequest();
+            request.done(() => {
+                console.log('worked');
+            })
+        });
+    </script>
 </body>
 
 </html>

@@ -1,6 +1,9 @@
 @php
 $user = auth()->user()
 @endphp
+@push('css')
+<link rel="stylesheet" href="{{ asset('b/vendors/styles/imageuploadify.min.css') }}">
+@endpush
 @extends('layouts.backend.app')
 @section('content')
 <div class="min-height-200px">
@@ -23,25 +26,36 @@ $user = auth()->user()
         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 mb-30">
             <div class="pd-20 card-box height-100-p">
                 <div class="profile-photo">
-                    <a href="modal" data-toggle="modal" data-target="#modal" class="edit-avatar"><i
-                            class="fa fa-pencil"></i></a>
-                    <img src="/b/vendors/images/photo1.jpg" alt="" class="avatar-photo">
-                    <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel"
-                        aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered" role="document">
-                            <div class="modal-content">
-                                <div class="modal-body pd-5">
-                                    <div class="img-container">
-                                        <img id="image" src="/b/vendors/images/photo2.jpg" alt="Picture">
+                    <form action="{{ route('admin.profile_img') }}" enctype="multipart/form-data" method="post">
+                        @csrf
+                        <a href="modal" data-toggle="modal" data-target="#modal" class="edit-avatar"><i
+                                class="fa fa-pencil"></i></a>
+                        <img src="@if ($profile->img)
+                        {{ url('/storage/profile/' . $profile->img) }}
+                        @else
+                        /b/vendors/images/photo1.jpg
+                        @endif" alt="" class="avatar-photo">
+                        <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-body pd-5">
+                                        <div class="img-container">
+                                            {{-- <img id="image" src="/b/vendors/images/photo2.jpg" alt="Picture"> --}}
+                                            {{-- <input placeholder="Upload Image" type="file" name="img"
+                                                class="custom-file-input" id="profile-image"> --}}
+                                            <input name="img" type="file" accept=".jpg,.jpeg,.png">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <input type="submit" value="Update" class="btn btn-primary">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    <div class="modal-footer">
+                                        <input type="submit" value="Update" class="btn btn-primary">
+                                        <button type="button" class="btn btn-default"
+                                            data-dismiss="modal">Close</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
                 <h5 class="text-center h5 mb-0 text-capitalize">{{$user->name}}</h5>
                 <p class="text-center text-muted font-14 text-capitalize">{{$user->type}}</p>
@@ -54,16 +68,15 @@ $user = auth()->user()
                         </li>
                         <li>
                             <span>Phone Number:</span>
-                            619-229-0054
+                            {{$user->profile->tel}}
                         </li>
                         <li>
                             <span>Country:</span>
-                            America
+                            {{$user->profile->country}}
                         </li>
                         <li>
                             <span>Address:</span>
-                            1807 Holden Street<br>
-                            San Diego, CA 92115
+                            {{$user->profile->address}}
                         </li>
                     </ul>
                 </div>
@@ -124,18 +137,21 @@ $user = auth()->user()
                         <ul class="nav nav-tabs customtab" role="tablist">
                             {{-- <li class="nav-item">
                                 <a class="nav-link active" data-toggle="tab" href="#timeline" role="tab">Timeline</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" data-toggle="tab" href="#tasks" role="tab">Tasks</a>
                             </li> --}}
+                            @if(auth()->user()->type == 'expert')
                             <li class="nav-item">
-                                <a class="nav-link" data-toggle="tab" href="#setting" role="tab">Settings</a>
+                                <a class="nav-link  active " data-toggle="tab" href="#tasks" role="tab">Tasks</a>
+                            </li>
+                            @endif
+                            <li class="nav-item">
+                                <a class="nav-link @if(auth()->user()->type != 'expert') active @endif"
+                                    data-toggle="tab" href="#setting" role="tab">Settings</a>
                             </li>
                         </ul>
                         <div class="tab-content">
-                            {{--
+
                             <!-- Timeline Tab start -->
-                            <div class="tab-pane fade show active" id="timeline" role="tabpanel">
+                            {{-- <div class="tab-pane fade show active" id="timeline" role="tabpanel">
                                 <div class="pd-20">
                                     <div class="profile-timeline">
                                         <div class="timeline-month">
@@ -224,271 +240,50 @@ $user = auth()->user()
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
                             <!-- Timeline Tab End -->
                             <!-- Tasks Tab start -->
-                            <div class="tab-pane fade" id="tasks" role="tabpanel">
+                            <div class="tab-pane fade  @if(auth()->user()->type == 'expert') active show @endif"
+                                id="tasks" role="tabpanel">
                                 <div class="pd-20 profile-task-wrap">
                                     <div class="container pd-0">
                                         <!-- Open Task start -->
                                         <div class="task-title row align-items-center">
                                             <div class="col-md-8 col-sm-12">
-                                                <h5>Open Tasks (4 Left)</h5>
-                                            </div>
-                                            <div class="col-md-4 col-sm-12 text-right">
-                                                <a href="task-add" data-toggle="modal" data-target="#task-add"
-                                                    class="bg-light-blue btn text-blue weight-500"><i
-                                                        class="ion-plus-round"></i> Add</a>
+                                                <h5>Sent Request</h5>
                                             </div>
                                         </div>
                                         <div class="profile-task-list pb-30">
+                                            @if (auth()->user()->projects->count())
                                             <ul>
-                                                <li>
-                                                    <div class="custom-control custom-checkbox mb-5">
-                                                        <input type="checkbox" class="custom-control-input" id="task-1">
-                                                        <label class="custom-control-label" for="task-1"></label>
-                                                    </div>
-                                                    <div class="task-type">Email</div>
-                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Id ea
-                                                    earum.
-                                                    <div class="task-assign">Assigned to Ferdinand M. <div
-                                                            class="due-date">due date <span>22 February 2019</span>
+                                                @foreach (auth()->user()->projects as $request)
+                                                <li class="card-body border m-2 p-10">
+                                                    <h3 class="task-type">Project name: <b>{{$request->name}}</b></h3>
+                                                    Subject: {{$request->pivot->subject}}
+                                                    <div class="task-assign">Body: {!! $request->pivot->body !!} <div
+                                                            class="due-date">Sent date
+                                                            <span>{{$request->pivot->created_at->diffForHumans()}}</span>
                                                         </div>
                                                     </div>
                                                 </li>
-                                                <li>
-                                                    <div class="custom-control custom-checkbox mb-5">
-                                                        <input type="checkbox" class="custom-control-input" id="task-2">
-                                                        <label class="custom-control-label" for="task-2"></label>
-                                                    </div>
-                                                    <div class="task-type">Email</div>
-                                                    Lorem ipsum dolor sit amet.
-                                                    <div class="task-assign">Assigned to Ferdinand M. <div
-                                                            class="due-date">due date <span>22 February 2019</span>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="custom-control custom-checkbox mb-5">
-                                                        <input type="checkbox" class="custom-control-input" id="task-3">
-                                                        <label class="custom-control-label" for="task-3"></label>
-                                                    </div>
-                                                    <div class="task-type">Email</div>
-                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                                    <div class="task-assign">Assigned to Ferdinand M. <div
-                                                            class="due-date">due date <span>22 February 2019</span>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="custom-control custom-checkbox mb-5">
-                                                        <input type="checkbox" class="custom-control-input" id="task-4">
-                                                        <label class="custom-control-label" for="task-4"></label>
-                                                    </div>
-                                                    <div class="task-type">Email</div>
-                                                    Lorem ipsum dolor sit amet. Id ea earum.
-                                                    <div class="task-assign">Assigned to Ferdinand M. <div
-                                                            class="due-date">due date <span>22 February 2019</span>
-                                                        </div>
-                                                    </div>
-                                                </li>
+                                                @endforeach
                                             </ul>
+                                            @else
+                                            <div class="alert alert-warning">
+                                                <h5 class="text-black-50">No Request sent yet!</h5>
+                                            </div>
+                                            @endif
+
                                         </div>
                                         <!-- Open Task End -->
-                                        <!-- Close Task start -->
-                                        <div class="task-title row align-items-center">
-                                            <div class="col-md-12 col-sm-12">
-                                                <h5>Closed Tasks</h5>
-                                            </div>
-                                        </div>
-                                        <div class="profile-task-list close-tasks">
-                                            <ul>
-                                                <li>
-                                                    <div class="custom-control custom-checkbox mb-5">
-                                                        <input type="checkbox" class="custom-control-input"
-                                                            id="task-close-1" checked="" disabled="">
-                                                        <label class="custom-control-label" for="task-close-1"></label>
-                                                    </div>
-                                                    <div class="task-type">Email</div>
-                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Id ea
-                                                    earum.
-                                                    <div class="task-assign">Assigned to Ferdinand M. <div
-                                                            class="due-date">due date <span>22 February 2018</span>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="custom-control custom-checkbox mb-5">
-                                                        <input type="checkbox" class="custom-control-input"
-                                                            id="task-close-2" checked="" disabled="">
-                                                        <label class="custom-control-label" for="task-close-2"></label>
-                                                    </div>
-                                                    <div class="task-type">Email</div>
-                                                    Lorem ipsum dolor sit amet.
-                                                    <div class="task-assign">Assigned to Ferdinand M. <div
-                                                            class="due-date">due date <span>22 February 2018</span>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="custom-control custom-checkbox mb-5">
-                                                        <input type="checkbox" class="custom-control-input"
-                                                            id="task-close-3" checked="" disabled="">
-                                                        <label class="custom-control-label" for="task-close-3"></label>
-                                                    </div>
-                                                    <div class="task-type">Email</div>
-                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                                    <div class="task-assign">Assigned to Ferdinand M. <div
-                                                            class="due-date">due date <span>22 February 2018</span>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="custom-control custom-checkbox mb-5">
-                                                        <input type="checkbox" class="custom-control-input"
-                                                            id="task-close-4" checked="" disabled="">
-                                                        <label class="custom-control-label" for="task-close-4"></label>
-                                                    </div>
-                                                    <div class="task-type">Email</div>
-                                                    Lorem ipsum dolor sit amet. Id ea earum.
-                                                    <div class="task-assign">Assigned to Ferdinand M. <div
-                                                            class="due-date">due date <span>22 February 2018</span>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <!-- Close Task start -->
-                                        <!-- add task popup start -->
-                                        <div class="modal fade customscroll" id="task-add" tabindex="-1" role="dialog">
-                                            <div class="modal-dialog modal-dialog-centered" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLongTitle">Tasks Add
-                                                        </h5>
-                                                        <button type="button" class="close" data-dismiss="modal"
-                                                            aria-label="Close" data-toggle="tooltip"
-                                                            data-placement="bottom" title=""
-                                                            data-original-title="Close Modal">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="modal-body pd-0">
-                                                        <div class="task-list-form">
-                                                            <ul>
-                                                                <li>
-                                                                    <form>
-                                                                        <div class="form-group row">
-                                                                            <label class="col-md-4">Task Type</label>
-                                                                            <div class="col-md-8">
-                                                                                <input type="text" class="form-control">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="form-group row">
-                                                                            <label class="col-md-4">Task Message</label>
-                                                                            <div class="col-md-8">
-                                                                                <textarea
-                                                                                    class="form-control"></textarea>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="form-group row">
-                                                                            <label class="col-md-4">Assigned to</label>
-                                                                            <div class="col-md-8">
-                                                                                <select
-                                                                                    class="selectpicker form-control"
-                                                                                    data-style="btn-outline-primary"
-                                                                                    title="Not Chosen" multiple=""
-                                                                                    data-selected-text-format="count"
-                                                                                    data-count-selected-text="{0} people selected">
-                                                                                    <option>Ferdinand M.</option>
-                                                                                    <option>Don H. Rabon</option>
-                                                                                    <option>Ann P. Harris</option>
-                                                                                    <option>Katie D. Verdin</option>
-                                                                                    <option>Christopher S. Fulghum
-                                                                                    </option>
-                                                                                    <option>Matthew C. Porter</option>
-                                                                                </select>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="form-group row mb-0">
-                                                                            <label class="col-md-4">Due Date</label>
-                                                                            <div class="col-md-8">
-                                                                                <input type="text"
-                                                                                    class="form-control date-picker">
-                                                                            </div>
-                                                                        </div>
-                                                                    </form>
-                                                                </li>
-                                                                <li>
-                                                                    <a href="javascript:;" class="remove-task"
-                                                                        data-toggle="tooltip" data-placement="bottom"
-                                                                        title="" data-original-title="Remove Task"><i
-                                                                            class="ion-minus-circled"></i></a>
-                                                                    <form>
-                                                                        <div class="form-group row">
-                                                                            <label class="col-md-4">Task Type</label>
-                                                                            <div class="col-md-8">
-                                                                                <input type="text" class="form-control">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="form-group row">
-                                                                            <label class="col-md-4">Task Message</label>
-                                                                            <div class="col-md-8">
-                                                                                <textarea
-                                                                                    class="form-control"></textarea>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="form-group row">
-                                                                            <label class="col-md-4">Assigned to</label>
-                                                                            <div class="col-md-8">
-                                                                                <select
-                                                                                    class="selectpicker form-control"
-                                                                                    data-style="btn-outline-primary"
-                                                                                    title="Not Chosen" multiple=""
-                                                                                    data-selected-text-format="count"
-                                                                                    data-count-selected-text="{0} people selected">
-                                                                                    <option>Ferdinand M.</option>
-                                                                                    <option>Don H. Rabon</option>
-                                                                                    <option>Ann P. Harris</option>
-                                                                                    <option>Katie D. Verdin</option>
-                                                                                    <option>Christopher S. Fulghum
-                                                                                    </option>
-                                                                                    <option>Matthew C. Porter</option>
-                                                                                </select>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="form-group row mb-0">
-                                                                            <label class="col-md-4">Due Date</label>
-                                                                            <div class="col-md-8">
-                                                                                <input type="text"
-                                                                                    class="form-control date-picker">
-                                                                            </div>
-                                                                        </div>
-                                                                    </form>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                        <div class="add-more-task">
-                                                            <a href="#" data-toggle="tooltip" data-placement="bottom"
-                                                                title="" data-original-title="Add Task"><i
-                                                                    class="ion-plus-circled"></i> Add More Task</a>
-                                                        </div>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-primary">Add</button>
-                                                        <button type="button" class="btn btn-secondary"
-                                                            data-dismiss="modal">Close</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- add task popup End -->
+
                                     </div>
                                 </div>
                             </div>
-                            <!-- Tasks Tab End --> --}}
+                            <!-- Tasks Tab End -->
                             <!-- Setting Tab start -->
-                            <div class="tab-pane fade active show height-100-p" id="setting" role="tabpanel">
+                            <div class="tab-pane fade height-100-p @if(auth()->user()->type != 'expert') active show @endif"
+                                id="setting" role="tabpanel">
                                 <div class="profile-setting">
                                     <form method="POST" action="{{ route('admin.profile.update', $user->profile) }}">
                                         @csrf
@@ -516,14 +311,14 @@ $user = auth()->user()
                                                     <label>Gender</label>
                                                     <div class="d-flex">
                                                         <div class="custom-control custom-radio mb-5 mr-20">
-                                                            <input type="radio" id="male" name="gender"
+                                                            <input type="radio" id="male" name="gender" value="male"
                                                                 class="custom-control-input" @if ($profile->gender ==
                                                             'male') checked @endif>
                                                             <label class="custom-control-label weight-400"
                                                                 for="male">Male</label>
                                                         </div>
                                                         <div class="custom-control custom-radio mb-5">
-                                                            <input type="radio" id="female" name="gender"
+                                                            <input type="radio" id="female" name="gender" value="female"
                                                                 class="custom-control-input" @if ($profile->gender ==
                                                             'female') checked @endif>
                                                             <label class="custom-control-label weight-400"
@@ -534,7 +329,8 @@ $user = auth()->user()
                                                 <div class="form-group">
                                                     <label>Country</label>
                                                     <select class="selectpicker form-control form-control-lg"
-                                                        data-style="btn-outline-secondary btn-lg" title="Not Chosen">
+                                                        data-style="btn-outline-secondary btn-lg" title="Not Chosen"
+                                                        name="country">
                                                         @foreach ($countries as $country)
                                                         <option @if (strtolower($country->name) ==
                                                             strtolower($profile->country))
@@ -552,6 +348,44 @@ $user = auth()->user()
                                                     <input class="form-control form-control-lg" type="text" name="tel"
                                                         value="{{$profile->tel ?? old('tel')}}">
                                                 </div>
+                                                @if (auth()->user()->type == 'expert')
+                                                <div class="form-group">
+                                                    <label>Current Organization</label>
+                                                    <input class="form-control form-control-lg" type="text"
+                                                        name="current_organization"
+                                                        value="{{$profile->current_organization ?? old('current_organization')}}">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Present Organization</label>
+                                                    <input class="form-control form-control-lg" type="text"
+                                                        name="present_organization"
+                                                        value="{{$profile->present_organization ?? old('present_organization')}}">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Experience</label>
+                                                    <input class="form-control form-control-lg" type="text"
+                                                        name="experience"
+                                                        value="{{$profile->experience ?? old('experience')}}">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Expertise</label>
+                                                    {{-- @dump() --}}
+                                                    <select name="expertise[]" class="custom-select2 form-control" multiple="true"
+                                                        style="width: 100%">
+                                                        @foreach ($expertises as $expertise)
+                                                        <option @if (auth()->user()->expertises->contains($expertise->id))
+                                                            selected
+                                                        @endif value="{{$expertise->id}}">{{$expertise->name}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                                @elseif(auth()->user()->type == 'company')
+                                                <div class="form-group">
+                                                    <label>Budget</label>
+                                                    <input class="form-control form-control-lg" type="text"
+                                                        name="budget" value="{{$profile->budget ?? old('budget')}}">
+                                                </div>
+                                                @endif
                                                 <div class="form-group">
                                                     <label>Address</label>
                                                     <textarea
@@ -560,15 +394,15 @@ $user = auth()->user()
                                                 <div class="form-group">
                                                     <div class="custom-control custom-checkbox mb-5">
                                                         <input type="checkbox" class="custom-control-input"
-                                                            id="customCheck1-1">
+                                                            id="agree_check">
                                                         <label class="custom-control-label weight-400"
-                                                            for="customCheck1-1">I agree to receive notification
-                                                            emails</label>
+                                                            for="agree_check">I agree on this changes to my
+                                                            profile</label>
                                                     </div>
                                                 </div>
                                                 <div class="form-group mb-0">
-                                                    <input type="submit" class="btn btn-primary"
-                                                        value="Update Information">
+                                                    <input id="update_btn" disabled type="submit"
+                                                        class="btn btn-primary" value="Update Information">
                                                 </div>
                                             </li>
                                         </ul>
@@ -584,3 +418,17 @@ $user = auth()->user()
     </div>
 </div>
 @endsection
+@push('js')
+<script>
+    $(document).ready(function () {
+        $('#agree_check').change(function (e) { 
+            e.preventDefault();
+            if($(this).prop('checked', true)){
+                $('#update_btn').prop('disabled', false);
+            }
+         });
+         $('input[type="file"]').imageuploadify();
+        });
+</script>
+<script src="{{ asset('b/vendors/scripts/imageuploadify.min.js') }}"></script>
+@endpush

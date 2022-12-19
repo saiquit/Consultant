@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -53,7 +54,9 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        return view('backend.users.view', compact('user'));
+        $profile = $user->profile;
+        $countries = DB::table('countries')->get();
+        return view('backend.profile', compact('profile', 'countries'));
     }
 
     /**

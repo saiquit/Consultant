@@ -13,6 +13,6 @@ class ProjectSeeder extends Seeder
      */
     public function run()
     {
-        //
+        $services =  \App\Models\Service::factory(10)->create();
     }
 }

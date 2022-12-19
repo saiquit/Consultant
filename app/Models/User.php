@@ -5,9 +5,11 @@ namespace App\Models;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Auth;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
@@ -62,5 +64,43 @@ class User extends Authenticatable
     public function profile(): HasOne
     {
         return $this->hasOne(Profile::class);
+    }
+
+    /**
+     * The projects that belong to the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function projects(): BelongsToMany
+    {
+        return $this->belongsToMany(Project::class)->withPivot('body', 'subject', 'created_at');
+    }
+
+    /**
+     * Get all of the posted_projects for the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function posted_projects(): HasMany
+    {
+        return $this->hasMany(Project::class, 'author_id');
+    }
+
+    public function isAdmin()
+    {
+        if (Auth::check() && Auth::user()->type == 'admin') {
+            return true;
+        }
+        return false;
+    }
+    
+    /**
+     * The receivers that belong to the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function email_receivers(): BelongsToMany
+    {
+        return $this->belongsToMany(Project::class, 'email_responses', 'user_id', 'project_id');
     }
 }

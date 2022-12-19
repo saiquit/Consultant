@@ -13,7 +13,19 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\User::factory(10)->hasExpertises(10)->create();
+        $users = \App\Models\User::factory(10)->hasExpertises(10)->create();
+        foreach ($users as $user) {
+            \App\Models\Profile::factory([
+                'user_id' => $user->id
+            ])->count(1)->create();
+
+            if ($user->type == 'company') {
+                \App\Models\Project::factory([
+                    'service_id' => random_int(1, 10),
+                    'author_id' => $user->id
+                ])->count(2)->create();
+            }
+        }
         \App\Models\User::factory([
             'name' => 'admin',
             'email' => 'admin@admin.com',

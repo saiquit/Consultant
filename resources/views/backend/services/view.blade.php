@@ -14,6 +14,17 @@
                         <li class="breadcrumb-item active" aria-current="page">Blog Detail</li>
                     </ol>
                 </nav> --}}
+                @if (auth()->user()->type == 'admin')
+                <div class="float-right">
+                    <button class="btn btn-info">Update</button>
+                    <button onclick="document.getElementById('approve_form').submit()" class="btn btn-danger">Delete
+                    </button>
+                </div>
+                <form id="approve_form" action="{{ route('admin.services.destroy',$service) }}" hidden method="post">
+                    @method("DELETE")
+                    @csrf
+                </form>
+                @endif
             </div>
         </div>
     </div>

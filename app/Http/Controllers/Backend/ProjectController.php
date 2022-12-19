@@ -2,10 +2,17 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Helper\Helper;
 use App\Http\Controllers\Controller;
+use App\Listeners\SendNewProjectNotification;
+use App\Models\Expertise;
 use App\Models\Project;
 use App\Models\Service;
+use App\Models\User;
+use App\Notifications\NewProjectNotification;
+use App\Notifications\ProjectNotification;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
@@ -22,7 +29,13 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $projects = Project::all()->sortBy('created_at');
+        if (auth()->user()->type == 'admin') {
+            $projects = Project::all()->sortBy('created_at');
+        } elseif (auth()->user()->type == 'company') {
+            $projects = auth()->user()->posted_projects;
+        } else {
+            $projects = Project::where('approved', true)->latest()->get();
+        }
         return view('backend.projects.index', compact('projects'));
     }
 
@@ -57,10 +70,12 @@ class ProjectController extends Controller
                 $service = $service->findOrFail($request->service);
                 $project = $service->projects()->create([
                     'name' => $request->name,
+                    'author_id' => auth()->id(),
                     'slug' =>  Str::slug($request->name),
                     'description' => $request->description,
                 ]);
             }
+            Notification::send(Helper::instance()->get_admins(), new ProjectNotification($project, 'New Project is added.'));
             return view('backend.projects.view', compact('project'));
         }
     }
@@ -84,7 +99,7 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        //
+        return view('backend.projects.edit', compact('project'));
     }
 
     /**
@@ -96,7 +111,26 @@ class ProjectController extends Controller
      */
     public function update(Request $request, Project $project)
     {
-        //
+        if ($project->approved) {
+            return redirect()->back()->with('message', 'Cannot update after approve.');
+        }
+        if ($request->hasAny(['name', 'description'])) {
+            $validation = Validator::make($request->all(), [
+                'name' => 'string|max:255|required',
+                'description' => 'string|required',
+            ]);
+            if ($validation->fails()) {
+                return back()->withErrors($validation);
+            } else {
+                $project = tap($project)->update([
+                    'name' => $request->name,
+                    'slug' =>  Str::slug($request->name),
+                    'description' => $request->description,
+                ]);
+            }
+            Notification::send(Helper::instance()->get_admins(), new ProjectNotification($project, 'Project is Updated'));
+            return view('backend.projects.view', compact('project'));
+        }
     }
 
     /**
