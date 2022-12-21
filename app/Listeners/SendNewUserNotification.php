@@ -30,6 +30,7 @@ class SendNewUserNotification
      */
     public function handle($event)
     {
+        // dd($event);
         $admins = User::whereType('admin')->get();
         Mail::to($event->user->email)->send(new WelcomeMail($event->user));
         Notification::send($admins, new NewUserNotification($event->user));

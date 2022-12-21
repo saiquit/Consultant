@@ -28,6 +28,6 @@ class WelcomeMail extends Mailable
      */
     public function build()
     {
-        // return $this->from('example@exp.com','none')->subject('Welcome to something')->view('vendor.mail.custom.welcome', ['data' => $this->userData]);
+        return $this->from('example@exp.com', 'none')->subject('Welcome to something')->view('mail.welcome', ['data' => $this->userData]);
     }
 }
