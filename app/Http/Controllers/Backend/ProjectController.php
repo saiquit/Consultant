@@ -27,16 +27,24 @@ class ProjectController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+
+        $services = Service::all(['name', 'slug', 'id']);
         if (auth()->user()->type == 'admin') {
-            $projects = Project::all()->sortBy('created_at');
+            if ($request->has('service')) {
+                $projects = Project::whereHas('service', function ($q) use ($request) {
+                    $q->where('id', $request->service);
+                })->orderBy('created_at', 'desc')->get();
+            } else {
+                $projects = Project::all()->sortBy('created_at');
+            }
         } elseif (auth()->user()->type == 'company') {
             $projects = auth()->user()->posted_projects;
         } else {
             $projects = Project::where('approved', true)->latest()->get();
         }
-        return view('backend.projects.index', compact('projects'));
+        return view('backend.projects.index', compact('projects', 'services'));
     }
 
     /**
