@@ -32,12 +32,12 @@ class ProjectController extends Controller
 
         $services = Service::all(['name', 'slug', 'id']);
         if (auth()->user()->type == 'admin') {
-            if ($request->has('service') && strlen($request->service) > 1) {
+            if ($request->service == '0' || !$request->service) {
+                $projects = Project::all()->sortBy('created_at');
+            } else {
                 $projects = Project::whereHas('service', function ($q) use ($request) {
                     $q->where('id', $request->service);
                 })->orderBy('created_at', 'desc')->get();
-            } else {
-                $projects = Project::all()->sortBy('created_at');
             }
         } elseif (auth()->user()->type == 'company') {
             $projects = auth()->user()->posted_projects;
