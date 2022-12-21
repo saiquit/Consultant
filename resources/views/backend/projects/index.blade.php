@@ -29,6 +29,7 @@
                         @if (auth()->user()->isAdmin())
                             <th>Author</th>
                         @endif
+                        <th>Keywords</th>
                         <th data-order="1">Start Date</th>
                         <th class="datatable-nosort">Action</th>
                     </tr>
@@ -53,6 +54,7 @@
                                     {{ $project->author->name }}
                                 </td>
                             @endif
+                            <td>{{ $project->keywords }}</td>
                             <td>{{ $project->created_at->diffForHumans() }}</td>
                             <td>
                                 <div class="dropdown">
@@ -63,11 +65,27 @@
                                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
                                         <a class="dropdown-item" href="{{ route('admin.projects.show', $project) }}"><i
                                                 class="dw dw-eye"></i> View</a>
-                                        @if ($project->author_id == auth()->user()->id)
+                                        @if ($project->author_id == auth()->user()->id ||
+                                            auth()->user()->isAdmin())
                                             <a class="dropdown-item" href="{{ route('admin.projects.edit', $project) }}"><i
                                                     class="dw dw-edit2"></i> Edit</a>
                                             <a class="dropdown-item" href="#"><i class="dw dw-delete-3"></i>
                                                 Delete</a>
+                                        @endif
+                                        @if (auth()->user()->isAdmin())
+                                            <button onclick="document.getElementById('approve_form').submit()"
+                                                @if ($project->approved) disabled @endif class="dropdown-item"><i
+                                                    class="dw dw-edit2"></i>
+                                                @if ($project->approved)
+                                                    Approved
+                                                @else
+                                                    Approve now
+                                                @endif
+                                            </button>
+                                            <form id="approve_form" action="{{ route('admin.approve', $project) }}" hidden
+                                                method="post">
+                                                @csrf
+                                            </form>
                                         @endif
                                     </div>
                                 </div>
@@ -95,18 +113,22 @@
                     targets: "datatable-nosort",
                     orderable: false,
                 }],
+                searchBuilder: {
+                    columns: [1, 2, 4]
+                },
                 "lengthMenu": [
                     [10, 25, 50, 100, -1],
                     [10, 25, 50, 100, "All"]
                 ],
                 "language": {
                     "info": "_START_-_END_ of _TOTAL_ entries",
-                    searchPlaceholder: "Search",
+                    searchPlaceholder: "Search Here",
                     paginate: {
                         next: '<i class="ion-chevron-right"></i>',
                         previous: '<i class="ion-chevron-left"></i>'
                     }
                 },
+
             });
         });
     </script>

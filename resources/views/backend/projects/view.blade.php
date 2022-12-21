@@ -166,9 +166,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    @if (auth()->user()->type == 'admin')
-                        <div class="col-md-4 col-sm-12">
+                        @if (auth()->user()->type == 'admin')
                             <div class="card-box mb-30">
                                 <h5 class="pd-20 h5 mb-0">Experts requests</h5>
                                 <div class="latest-post">
@@ -203,7 +201,7 @@
                                 </div>
                             </div>
                             <div class="card-box mb-30 p-3">
-                                <h5 class="mb-10">Find a Expert</h5>
+                                <h5 class="mb-10">Refer a Expert</h5>
                                 <div class="form-group">
                                     <input type="search" name="search_exp" placeholder="Search Here"
                                         class="search_box_exp form-control search-input" id="">
@@ -215,7 +213,7 @@
                             </div>
 
                             <div class="card-box mb-30">
-                                <h5 class="pd-20 h5 mb-0">Send Emails</h5>
+                                <h5 class="pd-20 h5 mb-0">Sent Emails</h5>
                                 <div class="latest-post">
                                     <ul class="list-group">
                                         @foreach ($project->email_responses as $user)
@@ -233,8 +231,9 @@
                                         @endforeach
                                     </ul>
                                 </div>
-                            </div>
-                    @endif
+                        @endif
+                    </div>
+
                 </div>
             </div>
         </div>
