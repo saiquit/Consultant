@@ -19,6 +19,8 @@ class CreateProjectsTable extends Migration
             $table->foreignId('author_id');
             $table->string('name');
             $table->string('slug');
+            $table->integer('budget')->unsigned()->nullable();
+            $table->string('timeframe', 100)->nullable();
             $table->boolean('live')->nullable()->default(false);
             $table->enum('type', ['onsite', 'offsite'])->nullable();
             $table->text('description');

@@ -19,11 +19,10 @@ class EmailController extends Controller
         ]);
         $project = Project::findOrFail($project_id);
         $user = User::where('email', $request->email)->firstOrFail();
-
         $project->email_responses()->attach([
             'user_id' => $user->id,
         ], [
-            'subject' => 'A response to ' . $project->name . ' Request.',
+            'subject' => auth()->user()->isAdmin() ? 'A response to ' . $project->name . ' Request.' : auth()->user()->name . 'is refering you ' . $project->name,
             'body' => $request->message,
         ]);
         Mail::to($request->email)

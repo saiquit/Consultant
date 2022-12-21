@@ -37,7 +37,7 @@ class Project extends Model
      */
     public function author(): BelongsTo
     {
-        return $this->belongsTo(User::class)->where('type', '=', 'company');
+        return $this->belongsTo(User::class)->where('type', '=', 'company')->orWhere('type', '=', 'admin');
     }
 
     /**

@@ -20,7 +20,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all()->sortBy('created_at');
+        $users = User::where('type', '!=', 'admin')->orderBy('created_at', 'desc')->get();
         return view('backend.users.index', compact('users'));
     }
 

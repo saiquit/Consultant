@@ -26,11 +26,14 @@ class UserSeeder extends Seeder
                 ])->count(2)->create();
             }
         }
-        \App\Models\User::factory([
+        $admin_user = \App\Models\User::factory([
             'name' => 'admin',
             'email' => 'elias@xpertgroupbd.com',
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'type'  => 'admin'
         ])->create();
+        \App\Models\Profile::factory([
+            'user_id' => $admin_user->id
+        ])->count(1)->create();
     }
 }

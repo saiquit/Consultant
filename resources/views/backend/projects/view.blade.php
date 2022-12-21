@@ -13,14 +13,15 @@
 
                     @if (auth()->user()->type == 'expert')
                         <div class="float-right">
+                            <button class="btn btn-warning" data-toggle="modal" data-target="#send_email_modal">Refer a
+                                friend</button>
                             <button class="btn btn-primary @if ($submitted) btn-success @endif"
                                 data-toggle="modal" data-target="#request_form_modal"
                                 @if ($submitted) disabled @endif>
                                 @if ($submitted)
                                     Sent
                                 @else
-                                    Send a
-                                    Request
+                                    Accept project
                                 @endif
                             </button>
                         </div>
@@ -269,6 +270,7 @@
             </div>
         </form>
     </div>
+
 @endsection
 
 @push('js')

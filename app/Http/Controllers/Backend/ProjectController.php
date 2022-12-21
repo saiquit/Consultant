@@ -32,7 +32,7 @@ class ProjectController extends Controller
 
         $services = Service::all(['name', 'slug', 'id']);
         if (auth()->user()->type == 'admin') {
-            if ($request->has('service')) {
+            if ($request->has('service') && strlen($request->service) > 1) {
                 $projects = Project::whereHas('service', function ($q) use ($request) {
                     $q->where('id', $request->service);
                 })->orderBy('created_at', 'desc')->get();
@@ -74,8 +74,9 @@ class ProjectController extends Controller
                 'location' => 'string|required',
                 'service' => 'required|integer',
                 'type' => 'required',
-                'live' => 'required',
-                'keywords' => '',
+                'budget' => 'integer|required',
+                'timeframe' => 'integer|required',
+                'keywords' => 'string',
             ]);
             if ($validation->fails()) {
                 return back()->withErrors($validation);
@@ -87,6 +88,8 @@ class ProjectController extends Controller
                     'slug' =>  Str::slug($request->name),
                     'description' => $request->description,
                     'location' => $request->location,
+                    'budget' => $request->budget,
+                    'timeframe' => $request->timeframe,
                     'type' => $request->type,
                     'live' => $request->live == 'on' ? 1 : 0,
                     'keywords' => $request->keywords

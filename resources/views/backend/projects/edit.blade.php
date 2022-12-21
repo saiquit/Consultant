@@ -66,6 +66,39 @@
                     @endif
                 </div>
             </div>
+
+            <div class="form-group row">
+                <label class="col-sm-12 col-md-2 col-form-label">Timeframe (Months)</label>
+                <div class="col-sm-12 col-md-10">
+                    <input class="@if ($errors->has('timeframe')) form-control-danger @endif form-control" type="number"
+                        name="timeframe" value="{{ $project->timeframe }}" placeholder="Timeframe of the Project">
+                    @if ($errors->has('timeframe'))
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <strong>{{ $errors->first('timeframe') }}</strong>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                    @endif
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-12 col-md-2 col-form-label">Budget (BDT)</label>
+                <div class="col-sm-12 col-md-10">
+                    <input class="@if ($errors->has('budget')) form-control-danger @endif form-control" type="number"
+                        name="budget" value="{{ $project->budget }}" placeholder="Budget of the Project">
+                    @if ($errors->has('budget'))
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <strong>{{ $errors->first('budget') }}</strong>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                    @endif
+                </div>
+            </div>
+
             <div class="form-group row">
                 <div class="col-md-12">
                     <div class="html-editor">
