@@ -15,6 +15,7 @@
                     <div class="col-md-9 col-sm-12">
                         <div class="form-group">
                             <select name="service" class="selectpicker form-control">
+                                <option value="">None</option>
                                 @foreach ($services as $service)
                                     <option @if (app('request')->input('service') == $service->id) selected @endif value="{{ $service->id }}">
                                         {{ $service->name }}</option>
