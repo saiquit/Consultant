@@ -4,16 +4,17 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Consult | @yield('title')</title>
+    <title>XpertGroupBD | @yield('title')</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="manifest" href="site.webmanifest">
-    <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
+    <link rel="icon" type="image/png" href="{{ asset('f/assets/img/favicon.ico') }}">
 
     <!-- CSS here -->
     <link rel="stylesheet" href="{{ asset('f/assets/bundle/libs.css') }}">
     <link rel="stylesheet" href="{{ asset('f/assets/bundle/styles.css') }}">
+
 </head>
 
 <body>
