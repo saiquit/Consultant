@@ -46,8 +46,9 @@ class ProjectController extends Controller
      */
     public function create()
     {
+        $new_id = Project::latest('id')->first()->id + 1;
         $services = Service::all(['name', 'id']);
-        return view('backend.projects.create', compact('services'));
+        return view('backend.projects.create', compact('services', 'new_id'));
     }
 
     /**
@@ -62,7 +63,11 @@ class ProjectController extends Controller
             $validation = Validator::make($request->all(), [
                 'name' => 'string|max:255|required',
                 'description' => 'string|required',
-                'service' => 'required|integer'
+                'location' => 'string|required',
+                'service' => 'required|integer',
+                'type' => 'required',
+                'live' => 'required',
+                'keywords' => '',
             ]);
             if ($validation->fails()) {
                 return back()->withErrors($validation);
@@ -73,6 +78,10 @@ class ProjectController extends Controller
                     'author_id' => auth()->id(),
                     'slug' =>  Str::slug($request->name),
                     'description' => $request->description,
+                    'location' => $request->location,
+                    'type' => $request->type,
+                    'live' => $request->live == 'on' ? 1 : 0,
+                    'keywords' => $request->keywords
                 ]);
             }
             Notification::send(Helper::instance()->get_admins(), new ProjectNotification($project, 'New Project is added.'));
@@ -118,6 +127,7 @@ class ProjectController extends Controller
             $validation = Validator::make($request->all(), [
                 'name' => 'string|max:255|required',
                 'description' => 'string|required',
+
             ]);
             if ($validation->fails()) {
                 return back()->withErrors($validation);
@@ -126,6 +136,10 @@ class ProjectController extends Controller
                     'name' => $request->name,
                     'slug' =>  Str::slug($request->name),
                     'description' => $request->description,
+                    'location' => $request->location,
+                    'type' => $request->type,
+                    'live' => $request->live == 'on' ? 1 : 0,
+                    'keywords' => $request->keywords
                 ]);
             }
             Notification::send(Helper::instance()->get_admins(), new ProjectNotification($project, 'Project is Updated'));

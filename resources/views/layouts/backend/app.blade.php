@@ -27,10 +27,13 @@
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-119386393-1"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
-		function gtag(){dataLayer.push(arguments);}
-		gtag('js', new Date());
 
-		gtag('config', 'UA-119386393-1');
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-119386393-1');
     </script>
 </head>
 
@@ -52,10 +55,9 @@
     <div class="mobile-menu-overlay"></div>
 
     <div class="main-container">
-        @if($errors->any())
-            {{ implode('', $errors->all('<div class="alert alert-danger" role="alert">:message</div>')) }}
-            @endif
+
         <div class="pd-ltr-20">
+
             @yield('content')
         </div>
     </div>
@@ -67,21 +69,24 @@
     @stack('js')
     <script>
         function sendMarkRequest(id = null) {
-        return $.ajax("{{ route('admin.mark') }}", {
-            method: 'POST',
-            data: {
-                _token:  $('meta[name="_token"]').attr('content'),
-                id
-            }
-        });
-    }
-         $('#mark-all').click(function() {
+            return $.ajax("{{ route('admin.mark') }}", {
+                method: 'POST',
+                data: {
+                    _token: $('meta[name="_token"]').attr('content'),
+                    id
+                }
+            });
+        }
+        $('#mark-all').click(function() {
             console.log('clicked');
             let request = sendMarkRequest();
             request.done(() => {
                 console.log('worked');
             })
         });
+        @if ($errors->any())
+            $('.main-container').prepend('<div class="alert alert-danger" role="alert">{{ $errors->first() }}</div>');
+        @endif
     </script>
 </body>
 

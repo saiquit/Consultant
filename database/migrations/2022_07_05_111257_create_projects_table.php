@@ -19,7 +19,11 @@ class CreateProjectsTable extends Migration
             $table->foreignId('author_id');
             $table->string('name');
             $table->string('slug');
+            $table->boolean('live')->nullable()->default(false);
+            $table->enum('type', ['onsite', 'offsite'])->nullable();
             $table->text('description');
+            $table->text('location')->nullable();
+            $table->text('keywords')->nullable();
             $table->boolean('approved')->default(false);
             $table->timestamps();
         });

@@ -64,7 +64,8 @@
                                         <a class="dropdown-item" href="{{ route('admin.projects.show', $project) }}"><i
                                                 class="dw dw-eye"></i> View</a>
                                         @if ($project->author_id == auth()->user()->id)
-                                            <a class="dropdown-item" href="#"><i class="dw dw-edit2"></i> Edit</a>
+                                            <a class="dropdown-item" href="{{ route('admin.projects.edit', $project) }}"><i
+                                                    class="dw dw-edit2"></i> Edit</a>
                                             <a class="dropdown-item" href="#"><i class="dw dw-delete-3"></i>
                                                 Delete</a>
                                         @endif
@@ -84,5 +85,29 @@
     <script src="{{ asset('b/src/plugins/datatables/js/dataTables.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('b/src/plugins/datatables/js/dataTables.responsive.min.js') }}"></script>
     <script src="{{ asset('b/src/plugins/datatables/js/responsive.bootstrap4.min.js') }}"></script>
-    <script src="{{ asset('b/vendors/scripts/datatable-setting.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            $('.data-table').DataTable({
+                scrollCollapse: true,
+                autoWidth: false,
+                responsive: true,
+                columnDefs: [{
+                    targets: "datatable-nosort",
+                    orderable: false,
+                }],
+                "lengthMenu": [
+                    [10, 25, 50, 100, -1],
+                    [10, 25, 50, 100, "All"]
+                ],
+                "language": {
+                    "info": "_START_-_END_ of _TOTAL_ entries",
+                    searchPlaceholder: "Search",
+                    paginate: {
+                        next: '<i class="ion-chevron-right"></i>',
+                        previous: '<i class="ion-chevron-left"></i>'
+                    }
+                },
+            });
+        });
+    </script>
 @endpush
