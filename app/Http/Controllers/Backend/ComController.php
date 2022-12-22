@@ -25,12 +25,8 @@ class ComController extends Controller
     {
         if (auth()->user()->type == 'admin') {
             $project->update(['approved' => true]);
-            if (!User::find('email', $project->author)) {
-                return redirect()->back()->with('error', 'No User Found');
-            } else {
-                Notification::send($project->author, new ProjectNotification($project, 'Your Project is approved'));
-                return redirect()->back()->with('project', $project);
-            }
+            // Notification::send($project->author, new ProjectNotification($project, 'Your Project is approved'));
+            return redirect()->back()->with('project', $project);
         }
         return abort(402);
     }
