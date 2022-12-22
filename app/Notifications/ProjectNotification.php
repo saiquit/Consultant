@@ -44,6 +44,7 @@ class ProjectNotification extends Notification
         $data  = [
             'message' => $this->message,
             'project_name' => $this->project->name,
+            'subject'       => $this->message,
         ];
         return (new MailMessage)->from(Env('MAIL_FROM_ADDRESS'))->subject('In response to ' . $this->project->name . ' Notification')->view('mail.project-request-response', compact('data'));
         // ->line('The introduction to the notification.')
