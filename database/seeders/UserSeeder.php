@@ -35,5 +35,23 @@ class UserSeeder extends Seeder
         \App\Models\Profile::factory([
             'user_id' => $admin_user->id
         ])->count(1)->create();
+        $company_user = \App\Models\User::factory([
+            'name' => 'company',
+            'email' => 'company@xpertgroupbd.com',
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'type'  => 'company'
+        ])->create();
+        \App\Models\Profile::factory([
+            'user_id' => $company_user->id
+        ])->count(1)->create();
+        $expert_user = \App\Models\User::factory([
+            'name' => 'expert',
+            'email' => 'expert@xpertgroupbd.com',
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'type'  => 'expert'
+        ])->create();
+        \App\Models\Profile::factory([
+            'user_id' => $expert_user->id
+        ])->count(1)->create();
     }
 }
