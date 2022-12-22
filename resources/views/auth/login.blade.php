@@ -20,8 +20,8 @@
             <div class="row align-items-center">
                 <div class="col-md-6 col-lg-7">
                     <img src="/b/vendors/images/login-page-img.png" alt="">
-                    Admin: <code>email: office@xpertgroupbd.com;<br>password: password</code>
-                    Company: <code>email: company@xpertgroupbd.com;<br>password: password</code>
+                    Admin: <code>email: office@xpertgroupbd.com;<br>password: password</code><br>
+                    Company: <code>email: company@xpertgroupbd.com;<br>password: password</code><br>
                     Expert: <code>email: expert@xpertgroupbd.com;<br>password: password</code>
                 </div>
                 <div class="col-md-6 col-lg-5">
