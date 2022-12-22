@@ -25,8 +25,12 @@ class ComController extends Controller
     {
         if (auth()->user()->type == 'admin') {
             $project->update(['approved' => true]);
-            Notification::send($project->author, new ProjectNotification($project, 'Your Project is approved'));
-            return redirect()->back()->with('project', $project);
+            if (!User::find('email', $project->author)) {
+                return redirect()->back()->with('error', 'No User Found');
+            } else {
+                Notification::send($project->author, new ProjectNotification($project, 'Your Project is approved'));
+                return redirect()->back()->with('project', $project);
+            }
         }
         return abort(402);
     }
@@ -38,20 +42,19 @@ class ComController extends Controller
 
     public function ajaxExpert(Request $request)
     {
-       $validator =Validator::make($request->all(), [
-        'search' => 'string|required'
-       ]);
+        $validator = Validator::make($request->all(), [
+            'search' => 'string|required'
+        ]);
 
-       if ($validator->fails()) {
-        return response('Please Type Correct', 404);
-       }else{
-        $expertises = User::where([['type', '=', 'expert'], ['name', 'LIKE', '%' . $request->search. '%']])->orWhereHas('expertises', function(Builder $q) use($request){
-            $q->where('slug', 'LIKE', '%'. $request->search . '%');
-        })->get(['name', 'email', 'id']);
-        if ($expertises->count()) {
-            return response()->json($expertises, 200);
+        if ($validator->fails()) {
+            return response('Please Type Correct', 404);
+        } else {
+            $expertises = User::where([['type', '=', 'expert'], ['name', 'LIKE', '%' . $request->search . '%']])->orWhereHas('expertises', function (Builder $q) use ($request) {
+                $q->where('slug', 'LIKE', '%' . $request->search . '%');
+            })->get(['name', 'email', 'id']);
+            if ($expertises->count()) {
+                return response()->json($expertises, 200);
+            }
         }
-       }
-
     }
 }
