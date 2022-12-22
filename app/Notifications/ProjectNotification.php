@@ -41,12 +41,14 @@ class ProjectNotification extends Notification
      */
     public function toMail($notifiable)
     {
-        $data  = ['message' => $this->message,
-        'project_name' => $this->project->name];
-        return (new MailMessage)->from(Env('MAIL_FROM_ADDRESS'))->subject('In response to '. $this->project->name . ' Notification')->view('mail.project-request-response', compact('data'));
-            // ->line('The introduction to the notification.')
-            // ->action('Notification Action', url('/'))
-            // ->line('Thank you for using our application!');
+        $data  = [
+            'message' => $this->message,
+            'project_name' => $this->project->name,
+        ];
+        return (new MailMessage)->from(Env('MAIL_FROM_ADDRESS'))->subject('In response to ' . $this->project->name . ' Notification')->view('mail.project-request-response', compact('data'));
+        // ->line('The introduction to the notification.')
+        // ->action('Notification Action', url('/'))
+        // ->line('Thank you for using our application!');
     }
 
     /**

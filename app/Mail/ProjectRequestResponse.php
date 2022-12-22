@@ -35,7 +35,7 @@ class ProjectRequestResponse extends Mailable implements ShouldQueue
         $data  = [
             'message' => $this->message,
             'project_name' => $this->project->name,
-            'subject'   => auth()->user()->isAdmin() ? 'A response to ' . $this->project->name . ' Request.' : auth()->user()->name . 'is refering you ' . $this->project->name,
+            'subject' => $this->message,
         ];
         return $this->from(Env('MAIL_FROM_ADDRESS'))->subject(auth()->user()->isAdmin() ? 'A response to ' . $this->project->name . ' Request.' : auth()->user()->name . 'is refering you ' . $this->project->name)->view('mail.project-request-response', compact('data'));
     }
