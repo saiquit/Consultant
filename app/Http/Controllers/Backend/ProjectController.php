@@ -31,18 +31,21 @@ class ProjectController extends Controller
     {
 
         $services = Service::all(['name', 'slug', 'id']);
+        $pq = Project::query();
         if (auth()->user()->type == 'admin') {
-            if ($request->service == '0' || !$request->service) {
-                $projects = Project::all()->sortBy('created_at');
-            } else {
-                $projects = Project::whereHas('service', function ($q) use ($request) {
+            if ($request->has('service')) {
+                $pq->whereHas('service', function ($q) use ($request) {
                     $q->where('id', $request->service);
-                })->orderBy('created_at', 'desc')->get();
+                });
             }
+            if ($request->has('approved')) {
+                $pq->where('approved', $request->approved);
+            }
+            $projects = $pq->orderBy('created_at', 'desc')->get();
         } elseif (auth()->user()->type == 'company') {
             $projects = auth()->user()->posted_projects;
         } else {
-            $projects = Project::where('approved', true)->latest()->get();
+            $projects = $pq->where('approved', true)->latest()->get();
         }
         return view('backend.projects.index', compact('projects', 'services'));
     }

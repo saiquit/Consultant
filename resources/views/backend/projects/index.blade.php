@@ -7,15 +7,15 @@
 
 @section('content')
     <div class="card-box mb-30">
-        <div class="pd-20 d-flex justify-content-between">
+        <form id="filter_form" class="pd-20 d-flex justify-content-between">
             <div class="w-50">
                 <h4 class="text-black h2">All Posted Projects</h4>
                 <div class="form-group row">
                     <label class="col-sm-12 col-md-3 col-form-label">Filter by Service</label>
                     <div class="col-md-9 col-sm-12">
                         <div class="form-group">
-                            <select name="service" class="selectpicker form-control">
-                                <option value="0">All</option>
+                            <select id="service" class="selectpicker form-control">
+                                <option value="">All</option>
                                 @foreach ($services as $service)
                                     <option @if (app('request')->input('service') == $service->id) selected @endif value="{{ $service->id }}">
                                         {{ $service->name }}</option>
@@ -24,6 +24,25 @@
                         </div>
                     </div>
                 </div>
+                <div class="form-group row">
+                    <label class="col-sm-12 col-md-3 col-form-label">Filter by Approval</label>
+                    <div class="col-md-9 col-sm-12">
+                        <div class="form-group">
+                            <select id="approved" class="selectpicker form-control">
+                                <option value="">All</option>
+                                <option @if (app('request')->input('approved') == '0') selected @endif value="0">Pending</option>
+                                <option @if (app('request')->input('approved') == '1') selected @endif value="1">Approved</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-6"> <button class="btn btn-success btn-block" type="submit">Filter</button>
+                    </div>
+                    <div class="col-6"> <a href="{{ route('admin.projects.index') }}">Reset</a>
+                    </div>
+                </div>
+
             </div>
             @if (auth()->user()->type == 'company' or auth()->user()->type == 'admin')
                 <a href="{{ route('admin.projects.create') }}" class="text-white">
@@ -31,7 +50,7 @@
                     </button>
                 </a>
             @endif
-        </div>
+        </form>
         <div class="pb-20">
             <table class="data-table table hover nowrap">
                 <thead>
@@ -57,14 +76,15 @@
                             @if (auth()->user()->type == 'admin')
                                 <td>
                                     @if ($project->approved)
-                                        <span class="text-success">Approved</span>
+                                        <span class="badge badge-success">Approved</span>
                                     @else
-                                        <span class="text-warning">Pending</span>
+                                        <span class="badge badge-warning">Pending</span>
                                     @endif
                                 </td>
                             @endif
                             <td>{{ $project->service->name }}</td>
-                            <td>{{ Str::substr($project->description, 0, 20) . '...' }} </td>
+                            <td>{{ $project->description }} </td>
+                            {{-- <td>{{ Str::substr($project->description, 0, 20) . '...' }} </td> --}}
                             @if (auth()->user()->isAdmin())
                                 <td>
                                     {{ $project->author->name }}
@@ -147,9 +167,17 @@
 
             });
         });
-        $("select[name='service']").change(function(e) {
+        const urlParams = new URLSearchParams(window.location.search);
+        urlParams.forEach((param, key) => {
+            $('#' + key).attr('name', key)
+        });
+        $('#filter_form select').change(function(e) {
             e.preventDefault();
-            window.location = `?service=${$(this).val()}`
+            if ($(this).val()) {
+                $(this).attr('name', $(this).attr('id'));
+            } else if ($(this).val() == "") {
+                $(this).attr('name', "");
+            }
         });
     </script>
 @endpush
