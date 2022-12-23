@@ -83,8 +83,8 @@
                                 </td>
                             @endif
                             <td>{{ $project->service->name }}</td>
-                            <td>{{ $project->description }} </td>
-                            {{-- <td>{{ Str::substr($project->description, 0, 20) . '...' }} </td> --}}
+                            {{-- <td>{{ $project->description }} </td> --}}
+                            <td>{{ Str::substr($project->description, 0, 20) . '...' }} </td>
                             @if (auth()->user()->isAdmin())
                                 <td>
                                     {{ $project->author->name }}

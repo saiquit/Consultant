@@ -15,7 +15,9 @@ class ProfileFactory extends Factory
     {
         return [
             'tel' => $this->faker->phoneNumber,
-            'full_name' => $this->faker->name,
+            'title' => $this->faker->title,
+            'first_name' => $this->faker->firstName,
+            'last_name' => $this->faker->lastName,
             'address' => $this->faker->address,
             'date_birth' => $this->faker->date,
             'gender' => $this->faker->randomElement(['male', 'female']),

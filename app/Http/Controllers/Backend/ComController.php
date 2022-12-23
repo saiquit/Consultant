@@ -18,7 +18,7 @@ class ComController extends Controller
         if ($project->users->contains(auth()->user()->id)) {
             return redirect()->back()->with('error', 'Not Complete');
         }
-        $project->users()->attach(auth()->user()->id, ['subject' => $request->subject, 'body' => $request->body]);
+        $project->email_responses()->attach(auth()->user()->id, ['subject' => $request->subject, 'body' => $request->body]);
         return back();
     }
     public function approve(Request $request, Project $project)

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield('title')</title>
-    <link rel="stylesheet" href="{{ asset('f/assets/css/mail.css') }}">
+    <link rel="stylesheet" href="{{ asset('f/assets/bundle/mail.css') }}">
 </head>
 
 <body style="border: 0; margin: 0;">

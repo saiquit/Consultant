@@ -17,7 +17,9 @@ class CreateProfilesTable extends Migration
             $table->id();
             $table->foreignId('user_id');
             $table->char('tel', 255)->nullable();
-            $table->string('full_name', 255)->nullable();
+            $table->string('title', 255)->nullable();
+            $table->string('first_name', 255)->nullable();
+            $table->string('last_name', 255)->nullable();
             $table->text('address')->nullable();
             $table->date('date_birth')->nullable();
             $table->enum('gender', ['male', 'female', 'other'])->nullable();
@@ -25,7 +27,7 @@ class CreateProfilesTable extends Migration
             $table->string('district', 100)->nullable();
             $table->boolean('complete')->nullable()->default(false);
             $table->string('img')->nullable();
-            $table->string('current_organization', 100)->nullable();
+            $table->string('previous_organization', 100)->nullable();
             $table->string('present_organization', 100)->nullable();
             $table->integer('experience')->unsigned()->nullable();
             $table->float('budget')->nullable();

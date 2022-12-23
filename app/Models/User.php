@@ -65,6 +65,15 @@ class User extends Authenticatable
     {
         return $this->hasOne(Profile::class);
     }
+    /**
+     * Get the organization associated with the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function company_profile(): HasOne
+    {
+        return $this->hasOne(CompanyProfile::class);
+    }
 
     /**
      * The projects that belong to the User
@@ -93,7 +102,7 @@ class User extends Authenticatable
         }
         return false;
     }
-    
+
     /**
      * The receivers that belong to the User
      *

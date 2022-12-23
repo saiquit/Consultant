@@ -1,6 +1,6 @@
 @extends('layouts.backend.app')
 @php
-    $submitted = $project->users->contains(auth()->user()->id);
+    $submitted = $project->email_responses->contains(auth()->user()->id);
 @endphp
 @section('content')
     <div class="min-height-200px">

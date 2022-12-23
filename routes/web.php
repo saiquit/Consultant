@@ -36,12 +36,15 @@ Route::group([
     'prefix' => 'admin',
     'middleware' => ['auth']
 ], function () {
-    Route::get('/', 'AdminController@home')->name('home');
-    Route::resource('services', 'ServiceController');
-    Route::resource('projects', 'ProjectController');
+    Route::get('/', 'AdminController@home')->middleware('profile')->name('home');
+    Route::resource('services', 'ServiceController')->middleware('profile');
+    Route::resource('projects', 'ProjectController')->middleware('profile');
     Route::resource('users', 'UserController');
     Route::resource('expertises', 'ExpertiseController');
-    Route::resource('profile', 'ProfileController');
+    Route::prefix('profile')->as('profile.')->group(function () {
+        Route::get('/', 'ProfileController@index')->name('index');
+        Route::post('/update', 'ProfileController@update')->name('update');
+    });;
     // Request a project
     Route::post('/reqForProject/{project}', 'ComController@reqForProject')->name('reqForProject');
     Route::post('/approve/{project}', 'ComController@approve')->name('approve');
