@@ -14,7 +14,9 @@ class CompanyProfileFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'c_name' => $this->faker->firstName,
+            'complete' => true,
+
         ];
     }
 }
