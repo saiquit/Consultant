@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Helper\Helper;
 use App\Http\Controllers\Controller;
 use App\Listeners\SendNewProjectNotification;
+use App\Mail\NewProject;
 use App\Mail\ProjectRequestResponse;
 use App\Models\Expertise;
 use App\Models\Project;
@@ -89,7 +90,7 @@ class ProjectController extends Controller
                 $service = $service->findOrFail($request->service);
                 $project = $service->projects()->create([
                     'name' => $request->name,
-                    'author_id' => auth()->id(),
+                    'author_id' => auth()->user()->id,
                     'slug' =>  Str::slug($request->name),
                     'description' => $request->description,
                     'location' => $request->location,
@@ -100,7 +101,7 @@ class ProjectController extends Controller
                     'keywords' => $request->keywords
                 ]);
             }
-            Notification::send(Helper::instance()->get_admins(), new ProjectNotification($project, 'New Project is added.'));
+            Mail::to(auth()->user()->email)->send(new NewProject($project));
             return view('backend.projects.view', compact('project'));
         }
     }

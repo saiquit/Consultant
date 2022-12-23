@@ -15,3 +15,5 @@ mix.sass("resources/scss/style.scss", "public/f/assets/bundle/styles.css")
     .combine("public/f/assets/css/*", "public/f/assets/bundle/libs.css")
     .combine("public/f/assets/js/*", "public/f/assets/bundle/libs.js")
     .js("resources/js/app.js", "public/f/assets/bundle/app.js");
+
+// mix.sass("resources/scss/mail_layout.scss", "public/f/assets/css/mail.css");

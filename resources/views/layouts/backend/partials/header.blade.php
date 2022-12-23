@@ -11,7 +11,7 @@
                 </a>
             </div>
         </div>
-        <div class="user-notification">
+        {{-- <div class="user-notification">
             <div class="dropdown">
                 <a class="dropdown-toggle no-arrow" href="#" role="button" data-toggle="dropdown" id="mark-all">
                     <i class="icon-copy dw dw-notification"></i>
@@ -25,7 +25,7 @@
                             @if (!auth()->user()->notifications->count())
                             <li class="alert alert-danger">No Notifications</li>
                             @else
-                            @foreach ( auth()->user()->notifications->slice(0,6) as $item)
+                            @foreach (auth()->user()->notifications->slice(0, 6) as $item)
                             <li class="alert @if ($item->read_at) alert-success @else alert-warning @endif">
                                 <a href=" {{ route('admin.'.$item->data['type'] . '.show',$item->data['id']) }}">
                                     <img src="/b/vendors/images/img.jpg" alt="">
@@ -39,18 +39,18 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
         <div class="user-info-dropdown">
             <div class="dropdown">
                 <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown">
                     <span class="user-icon">
                         @if (!auth()->user()->profile or !auth()->user()->profile->img)
-                        <img src="/b/vendors/images/photo1.jpg" alt="">
+                            <img src="/b/vendors/images/photo1.jpg" alt="">
                         @else
-                        <img src="{{ url('/storage/profile/' . auth()->user()->profile->img) }}" alt="">
+                            <img src="{{ url('/storage/profile/' . auth()->user()->profile->img) }}" alt="">
                         @endif
                     </span>
-                    <span class="user-name">{{auth()->user()->name}}</span>
+                    <span class="user-name">{{ auth()->user()->name }}</span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
                     <a class="dropdown-item" href="{{ route('admin.profile.index') }}"><i class="dw dw-user1"></i>
