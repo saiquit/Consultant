@@ -23,7 +23,6 @@ class ProfileFactory extends Factory
             'gender' => $this->faker->randomElement(['male', 'female']),
             'country' => $this->faker->country,
             'district' => $this->faker->city,
-            'complete' => true,
             // 'img'      => 'b/vendors/images/photo1.jpg'
         ];
     }

@@ -18,10 +18,20 @@ class ProfileController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $profile = '';
-        if (auth()->user()->type == 'expert') {
+        if (auth()->user()->type == 'admin') {
+            if ($request->type == 'expert') {
+                $profile = Profile::firstOrCreate([
+                    'user_id' => $request->id
+                ]);
+            } else {
+                $profile = CompanyProfile::firstOrCreate([
+                    'user_id' => $request->id
+                ]);
+            }
+        } elseif (auth()->user()->type == 'expert') {
             $profile = Profile::firstOrCreate([
                 'user_id' => auth()->user()->id
             ]);
@@ -104,7 +114,9 @@ class ProfileController extends Controller
             if ($validator->fails()) {
                 return back()->withErrors($validator);
             }
-            $profile = auth()->user()->profile()->update([...$request->except(['_token', 'expertises']), 'complete' => 1]);
+            $profile = auth()->user()->profile()->update($request->except(['_token', 'expertises']));
+            auth()->user()->complete = 1;
+            auth()->user()->save();
             auth()->user()->expertises()->sync($request->expertises);
             return redirect()->back()->with('profile', $profile);
         } elseif (auth()->user()->type == 'company') {
@@ -120,7 +132,9 @@ class ProfileController extends Controller
                 return back()->withErrors($validator);
             }
             $profile = auth()->user()->company_profile()->firstOrCreate();
-            $profile->update([...$request->except(['_token']), 'complete' => 1]);
+            $profile->update($request->except(['_token']));
+            auth()->user()->complete = 1;
+            auth()->user()->save();
             return redirect()->back()->with('profile', $profile);
         } else {
             return abort(501);

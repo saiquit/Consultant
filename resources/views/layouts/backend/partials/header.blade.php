@@ -53,9 +53,11 @@
                     <span class="user-name">{{ auth()->user()->name }}</span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-                    <a class="dropdown-item" href="{{ route('admin.profile.index') }}"><i class="dw dw-user1"></i>
-                        Profile</a>
-                    <a class="dropdown-item" href="faq.html"><i class="dw dw-help"></i> Help</a>
+                    @if (auth()->user()->type != 'admin')
+                        <a class="dropdown-item" href="{{ route('admin.profile.index') }}"><i class="dw dw-user1"></i>
+                            Profile</a>
+                        <a class="dropdown-item" href="faq.html"><i class="dw dw-help"></i> Help</a>
+                    @endif
                     <a class="dropdown-item" href="{{ route('logout', []) }}"
                         onclick="event.preventDefault(); document.getElementById('frm-logout').submit();"><i
                             class="dw dw-logout"></i> Log Out</a>

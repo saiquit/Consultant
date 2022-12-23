@@ -366,7 +366,7 @@
                                                                 name="tel" value="{{ $profile->tel ?? old('tel') }}">
                                                         </div>
                                                         <div class="form-group">
-                                                            <label>P revious Organization</label>
+                                                            <label>Previous Organization</label>
                                                             <input class="form-control form-control-lg" type="text"
                                                                 name="previous_organization"
                                                                 value="{{ $profile->previous_organization ?? old('previous_organization') }}">

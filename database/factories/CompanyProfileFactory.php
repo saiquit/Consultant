@@ -15,7 +15,6 @@ class CompanyProfileFactory extends Factory
     {
         return [
             'c_name' => $this->faker->firstName,
-            'complete' => true,
 
         ];
     }

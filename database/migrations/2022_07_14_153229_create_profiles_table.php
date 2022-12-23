@@ -25,12 +25,10 @@ class CreateProfilesTable extends Migration
             $table->enum('gender', ['male', 'female', 'other'])->nullable();
             $table->string('country', 100)->nullable()->default('Bangladesh');
             $table->string('district', 100)->nullable();
-            $table->boolean('complete')->nullable()->default(false);
             $table->string('img')->nullable();
             $table->string('previous_organization', 100)->nullable();
             $table->string('present_organization', 100)->nullable();
             $table->integer('experience')->unsigned()->nullable();
-            $table->float('budget')->nullable();
             $table->timestamps();
         });
     }

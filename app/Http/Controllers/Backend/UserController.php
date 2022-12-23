@@ -54,9 +54,15 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        $profile = $user->profile;
-        $countries = DB::table('countries')->get();
-        return view('backend.profile', compact('profile', 'countries'));
+        // $countries = DB::table('countries')->get();
+        if ($user->type == 'expert') {
+            $profile = $user->profile()->firstOrCreate(['user_id' => $user]);
+            return view('backend.users.p_view', compact('profile'));
+        } elseif ($user->type == 'company') {
+            $profile = $user->company_profile()->firstOrNew();
+            // dd($profile);
+            return view('backend.users.cp_view', compact('profile'));
+        }
     }
 
     /**

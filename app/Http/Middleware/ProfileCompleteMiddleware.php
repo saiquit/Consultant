@@ -16,7 +16,9 @@ class ProfileCompleteMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        if (!auth()->user()->company_profile->complete ?? !auth()->user()->profile->complete) {
+        if (auth()->user()->type == 'admin') {
+            return $next($request);
+        } elseif (!auth()->user()->complete || !auth()->user()->complete) {
             return redirect()->route('admin.profile.index')->withErrors(['Please complete your profile first!']);
         } else {
             return $next($request);
