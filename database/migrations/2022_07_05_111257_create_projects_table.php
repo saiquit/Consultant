@@ -21,6 +21,7 @@ class CreateProjectsTable extends Migration
             $table->string('slug');
             $table->integer('budget')->unsigned()->nullable();
             $table->string('timeframe', 100)->nullable();
+            $table->date('last_date')->nullable();
             $table->boolean('live')->nullable()->default(false);
             $table->enum('type', ['onsite', 'offsite'])->nullable();
             $table->text('description');

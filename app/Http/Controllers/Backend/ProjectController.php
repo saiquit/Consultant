@@ -4,14 +4,9 @@ namespace App\Http\Controllers\Backend;
 
 use App\Helper\Helper;
 use App\Http\Controllers\Controller;
-use App\Listeners\SendNewProjectNotification;
 use App\Mail\NewProject;
-use App\Mail\ProjectRequestResponse;
-use App\Models\Expertise;
 use App\Models\Project;
 use App\Models\Service;
-use App\Models\User;
-use App\Notifications\NewProjectNotification;
 use App\Notifications\ProjectNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -83,6 +78,7 @@ class ProjectController extends Controller
                 'budget' => 'integer|required',
                 'timeframe' => 'integer|required',
                 'keywords' => 'string',
+                'last_date' => 'string',
             ]);
             if ($validation->fails()) {
                 return back()->withErrors($validation);
@@ -98,7 +94,8 @@ class ProjectController extends Controller
                     'timeframe' => $request->timeframe,
                     'type' => $request->type,
                     'live' => $request->live == 'on' ? 1 : 0,
-                    'keywords' => $request->keywords
+                    'keywords' => $request->keywords,
+                    'last_date' => $request->last_date
                 ]);
             }
             Mail::to(auth()->user()->email)->send(new NewProject($project));
@@ -137,8 +134,8 @@ class ProjectController extends Controller
      */
     public function update(Request $request, Project $project)
     {
-        if ($project->approved) {
-            return redirect()->back()->with('message', 'Cannot update after approve.');
+        if ($project->approved && !auth()->user()->isAdmin()) {
+            return redirect()->back()->withErrors(['message' => 'Cannot update after approve.']);
         }
         if ($request->hasAny(['name', 'description'])) {
             $validation = Validator::make($request->all(), [
@@ -156,10 +153,11 @@ class ProjectController extends Controller
                     'location' => $request->location,
                     'type' => $request->type,
                     'live' => $request->live == 'on' ? 1 : 0,
-                    'keywords' => $request->keywords
+                    'keywords' => $request->keywords,
+                    'last_date' => $request->last_date
                 ]);
             }
-            Notification::send(Helper::instance()->get_admins(), new ProjectNotification($project, 'Project is Updated'));
+            // Notification::send(Helper::instance()->get_admins(), new ProjectNotification($project, 'Project is Updated'));
             return view('backend.projects.view', compact('project'));
         }
     }

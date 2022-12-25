@@ -65,6 +65,7 @@
                             <th>Author</th>
                         @endif
                         <th>Keywords</th>
+                        <th data-order="1">Last Date</th>
                         <th data-order="1">Start Date</th>
                         <th class="datatable-nosort">Action</th>
                     </tr>
@@ -92,6 +93,7 @@
                             @endif
                             <td>{{ $project->keywords }}</td>
                             <td>{{ $project->created_at->diffForHumans() }}</td>
+                            <td>{{ Carbon\Carbon::create($project->last_date)->toFormattedDateString() }}</td>
                             <td>
                                 <div class="dropdown">
                                     <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle"

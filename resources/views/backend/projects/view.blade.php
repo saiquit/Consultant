@@ -144,6 +144,9 @@
                             <h5 class="pd-20 h5 mb-0">Details</h5>
                             <div class="list-group">
                                 <div class="list-group-item d-flex align-items-center justify-content-between">Live
+                                    <span class="badge badge-primary badge-pill">{{ $project->last_date }}</span>
+                                </div>
+                                <div class="list-group-item d-flex align-items-center justify-content-between">Live
                                     <span class="badge badge-primary badge-pill">{{ $project->live ? 'Yes' : 'No' }}</span>
                                 </div>
                                 <div class="list-group-item d-flex align-items-center justify-content-between">Type

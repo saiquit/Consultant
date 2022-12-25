@@ -100,10 +100,27 @@
             </div>
 
             <div class="form-group row">
+                <label class="col-sm-12 col-md-2 col-form-label">Last Date</label>
+                <div class="col-sm-12 col-md-10">
+                    <input class="@if ($errors->has('last_date')) form-control-danger @endif form-control date-picker"
+                        type="text" name="last_date" value="{{ old('last_date') }}"
+                        placeholder="Last date of the Project">
+                    @if ($errors->has('last_date'))
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <strong>{{ $errors->first('last_date') }}</strong>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                    @endif
+                </div>
+            </div>
+
+            <div class="form-group row">
                 <label class="col-sm-12 col-md-2 col-form-label">Budget (BDT)</label>
                 <div class="col-sm-12 col-md-10">
-                    <input class="@if ($errors->has('budget')) form-control-danger @endif form-control" type="number"
-                        name="budget" value="{{ old('budget') }}" placeholder="Budget of the Project">
+                    <input class="@if ($errors->has('budget')) form-control-danger @endif form-control"
+                        type="number" name="budget" value="{{ old('budget') }}" placeholder="Budget of the Project">
                     @if ($errors->has('budget'))
                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
                             <strong>{{ $errors->first('budget') }}</strong>
