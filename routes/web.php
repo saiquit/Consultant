@@ -27,6 +27,15 @@ Route::group([
         Route::get('/', 'ServiceController@index')->name('index');
         Route::get('/{slug}', 'ServiceController@show')->name('show');
     });
+    //Todo: Delete this
+    // Route::get('mail-test', function () {
+    //     return view('mail.welcome', [
+    //         'data' => [
+    //             'name' => 'Name',
+    //             'subject' => 'Subject of the mail'
+    //         ]
+    //     ]);
+    // });
 });
 
 
