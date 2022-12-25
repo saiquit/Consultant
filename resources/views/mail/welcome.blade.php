@@ -10,7 +10,7 @@
     <hr>
 @endsection
 @section('body')
-    Xpertgroupbd is the first and unique platformin Bangladesh for the manufacturing sector where indeustries can post their
+    Xpertgroupbd is the first and unique platform in Bangladesh for the manufacturing sector where industries can post their
     issues/problems/projects/requirements and industry senior expertise offer solution and services through paid consultancy
     method.
     <br>
