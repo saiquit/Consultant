@@ -65,8 +65,8 @@
                             <th>Author</th>
                         @endif
                         <th>Keywords</th>
-                        <th data-order="1">Last Date</th>
                         <th data-order="1">Start Date</th>
+                        <th data-order="1">Last Date</th>
                         <th class="datatable-nosort">Action</th>
                     </tr>
                 </thead>
@@ -92,7 +92,7 @@
                                 </td>
                             @endif
                             <td>{{ $project->keywords }}</td>
-                            <td>{{ $project->created_at->diffForHumans() }}</td>
+                            <td>{{ Carbon\Carbon::create($project->created_at)->toFormattedDateString() }}</td>
                             <td>{{ Carbon\Carbon::create($project->last_date)->toFormattedDateString() }}</td>
                             <td>
                                 <div class="dropdown">

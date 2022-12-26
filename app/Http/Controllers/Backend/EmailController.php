@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Mail\ProjectRequestResponse;
+use App\Mail\ReferenceMail;
 use App\Models\Project;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -18,15 +19,19 @@ class EmailController extends Controller
             'message' => 'required'
         ]);
         $project = Project::findOrFail($project_id);
-        $user = User::where('email', $request->email)->firstOrFail();
+        try {
+            $user = User::where('email', $request->email)->firstOrFail();
+        } catch (\Throwable $th) {
+            abort(404, ['error', 'No registered user found.']);
+        }
         $project->email_responses()->attach([
             'user_id' => $user->id,
         ], [
-            'subject' => auth()->user()->isAdmin() ? 'A response to ' . $project->name . ' Request.' : auth()->user()->name . 'is refering you ' . $project->name,
+            'subject' =>  auth()->user()->name . 'is refering you ' . $project->name,
             'body' => $request->message,
         ]);
-        Mail::to($request->email)
-            ->send(new ProjectRequestResponse(strval($request->message), $project));
+        $mailData = ['name' => $user->name, 'subject' => auth()->user()->name . 'is refering you ' . $project->name, 'project' => $project];
+        Mail::to($request->email)->send(new ReferenceMail($mailData));
         return back();
     }
 }

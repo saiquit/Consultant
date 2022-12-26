@@ -5,20 +5,19 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\Project;
 use App\Models\User;
-use App\Notifications\ProjectNotification;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Validator;
 
 class ComController extends Controller
 {
     public function reqForProject(Request $request, Project $project)
     {
-        if ($project->users->contains(auth()->user()->id)) {
-            return redirect()->back()->with('error', 'Not Complete');
-        }
-        $project->email_responses()->attach(auth()->user()->id, ['subject' => $request->subject, 'body' => $request->body]);
+        $responseData = $project->email_responses()->attach(auth()->user()->id, ['subject' => $request->subject, 'body' => $request->body]);
+        dd($responseData);
+        $reference = [
+            'subject' => $responseData['subject'],
+        ];
         return back();
     }
     public function approve(Request $request, Project $project)

@@ -143,15 +143,15 @@
                         <div class="card-box mb-30">
                             <h5 class="pd-20 h5 mb-0">Details</h5>
                             <div class="list-group">
-                                <div class="list-group-item d-flex align-items-center justify-content-between">Live
-                                    <span class="badge badge-primary badge-pill">{{ $project->last_date }}</span>
+                                <div class="list-group-item d-flex align-items-center justify-content-between">Last Date
+                                    <span class="">{{ $project->last_date }}</span>
                                 </div>
                                 <div class="list-group-item d-flex align-items-center justify-content-between">Live
                                     <span class="badge badge-primary badge-pill">{{ $project->live ? 'Yes' : 'No' }}</span>
                                 </div>
                                 <div class="list-group-item d-flex align-items-center justify-content-between">Type
                                     <span
-                                        class="badge badge-primary badge-pill text-capitalized">{{ $project->type }}</span>
+                                        class="badge badge-primary badge-pill text-capitalized">{{ ucfirst($project->type) }}</span>
                                 </div>
                                 <div class="list-group-item d-flex align-items-center justify-content-between">Location
                                     <span class="">{{ $project->location }}</span>
