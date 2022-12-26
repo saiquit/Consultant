@@ -90,6 +90,17 @@
                         </div>
                     @elseif (auth()->user()->type == 'admin')
                         <div class="float-right">
+                            <button class="btn btn-warning" data-toggle="modal" data-target="#send_email_modal">Refer a
+                                friend</button>
+                            <button class="btn btn-primary @if ($submitted) btn-success @endif"
+                                data-toggle="modal" data-target="#request_form_modal"
+                                @if ($submitted) disabled @endif>
+                                @if ($submitted)
+                                    Sent
+                                @else
+                                    Accept project
+                                @endif
+                            </button>
                             <button onclick="document.getElementById('approve_form').submit()"
                                 @if ($project->approved) disabled @endif
                                 class="btn btn-success

@@ -15,7 +15,6 @@
     <br>
     <hr>
     <br>
-    <a href="{{ route('admin.home') }}" class="btn btn-primary hero-primary">Go to Dashboard</a>
 @endsection
 
 @section('note')
