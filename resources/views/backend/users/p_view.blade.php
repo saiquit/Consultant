@@ -1,5 +1,4 @@
 @extends('layouts.backend.app')
-
 @section('content')
     <div class="pd-20 card-box mb-30">
         <div class="clearfix">

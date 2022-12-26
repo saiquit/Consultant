@@ -56,10 +56,10 @@ class UserController extends Controller
     {
         // $countries = DB::table('countries')->get();
         if ($user->type == 'expert') {
-            $profile = $user->profile()->firstOrCreate(['user_id' => $user]);
+            $profile =  $user->profile;
             return view('backend.users.p_view', compact('profile'));
         } elseif ($user->type == 'company') {
-            $profile = $user->company_profile()->firstOrNew();
+            $profile = $user->company_profile;
             // dd($profile);
             return view('backend.users.cp_view', compact('profile'));
         }
