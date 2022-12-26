@@ -62,22 +62,42 @@
                     <div class="profile-info">
                         <h5 class="mb-20 h5 text-blue">Contact Information</h5>
                         <ul>
-                            <li>
-                                <span>Email Address:</span>
-                                {{ $user->email }}
-                            </li>
-                            <li>
-                                <span>Phone Number:</span>
-                                {{ $user->profile->tel ?? $user->company_profile->tel }}
-                            </li>
-                            <li>
-                                <span>Country:</span>
-                                {{ $user->profile->country ?? $user->company_profile->country }}
-                            </li>
-                            <li>
-                                <span>Address:</span>
-                                {{ $user->profile->address ?? $user->company_profile->address }}
-                            </li>
+                            @if ($user->type == 'expert')
+                                <li>
+                                    <span>Email Address:</span>
+                                    {{ $user->email }}
+                                </li>
+                                <li>
+                                    <span>Phone Number:</span>
+                                    {{ $user->profile->tel }}
+                                </li>
+                                <li>
+                                    <span>Country:</span>
+                                    {{ $user->profile->country }}
+                                </li>
+                                <li>
+                                    <span>Address:</span>
+                                    {{ $user->profile->address }}
+                                </li>
+                            @elseif ($user->type == 'company')
+                                <li>
+                                    <span>Email Address:</span>
+                                    {{ $user->company_profile->email }}
+                                </li>
+                                <li>
+                                    <span>Phone Number:</span>
+                                    {{ $user->company_profile->tel }}
+                                </li>
+                                <li>
+                                    <span>Country:</span>
+                                    {{ $user->company_profile->country }}
+                                </li>
+                                <li>
+                                    <span>Address:</span>
+                                    {{ $user->company_profile->address }}
+                                </li>
+                            @endif
+
                         </ul>
                     </div>
                     <div class="profile-social">
@@ -399,7 +419,7 @@
                                                         </div>
                                                         <div class="form-group">
                                                             <label>Address</label>
-                                                            <textarea class="form-control">{{ $profile->address ?? old('address') }}</textarea>
+                                                            <textarea name="address" class="form-control">{{ $profile->address ?? old('address') }}</textarea>
                                                         </div>
                                                         <div class="form-group">
                                                             <div class="custom-control custom-checkbox mb-5">
