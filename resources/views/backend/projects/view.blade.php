@@ -170,8 +170,9 @@
                                 </div>
                             </div>
                         </div>
-                        @if (auth()->user()->type == 'expert' || auth()->user()->type == 'admin')
-                            <div class="card-box mb-30 p-3">
+
+                        @if (auth()->user()->type == 'admin')
+                            {{-- <div class="card-box mb-30 p-3">
                                 <h5 class="mb-10">Refer a Expert</h5>
                                 <div class="form-group">
                                     <input type="search" name="search_exp" placeholder="Search Here"
@@ -181,9 +182,8 @@
                                     <div class="list-group search_exp_result">
                                     </div>
                                 </div>
-                            </div>
-                        @endif
-                        @if (auth()->user()->type == 'admin')
+                            </div> --}}
+
                             <div class="card-box mb-30">
                                 <h5 class="pd-20 h5 mb-0">Experts requests</h5>
                                 <div class="latest-post">
@@ -252,12 +252,16 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="modal_label">Send Email.</h5>
+                        <h5 class="modal-title" id="modal_label">Send Email: </h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
+                        <div class="form-group">
+                            <label for="recipient-email" class="col-form-label">Name:</label>
+                            <input name="name" type="name" class="form-control">
+                        </div>
                         <div class="form-group">
                             <label for="recipient-email" class="col-form-label">Recipient Email:</label>
                             <input name="email" type="email" class="form-control" id="recipient-email">
@@ -280,18 +284,12 @@
 
 @push('js')
     <script>
-        // ajax search
-        $(".search_box_exp").change(function(e) {
-            e.preventDefault();
-            ajax_search_exp_handler("{{ route('admin.ajax_exp') }}", $(this).val());
-        })
-
-        $('#send_email_modal').on('show.bs.modal', function(event) {
-            var button = $(event.relatedTarget)
-            var recipient = button.data('email')
-            var modal = $(this)
-            modal.find('.modal-title').text('Send Email to ' + recipient)
-            modal.find('.modal-body input').val(recipient)
-        })
+        // $('#send_email_modal').on('show.bs.modal', function(event) {
+        //     var button = $(event.relatedTarget)
+        //     var recipient = button.data('email')
+        //     var modal = $(this)
+        //     modal.find('.modal-title').text('Send Email ')
+        //     modal.find('.modal-body input').val(recipient)
+        // })
     </script>
 @endpush

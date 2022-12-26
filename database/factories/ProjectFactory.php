@@ -19,6 +19,7 @@ class ProjectFactory extends Factory
             'name' => $title,
             'slug' => Str::slug($title),
             'description' => $this->faker->sentences(3, true),
+            'approved' => $this->faker->boolean(50)
         ];
     }
 }

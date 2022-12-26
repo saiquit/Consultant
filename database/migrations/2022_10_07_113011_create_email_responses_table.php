@@ -18,6 +18,8 @@ class CreateEmailResponsesTable extends Migration
             $table->foreignId('user_id');
             $table->foreignId('project_id');
             $table->string('subject', 250)->nullable();
+            $table->string('name', 250)->nullable();
+            $table->string('refered_email', 250)->nullable();
             $table->longText('body')->nullable();
             $table->timestamps();
         });

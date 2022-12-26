@@ -16,21 +16,19 @@ class EmailController extends Controller
     {
         $request->validate([
             'email' => 'email|required',
-            'message' => 'required'
+            'message' => 'required',
+            'name' => 'required',
         ]);
         $project = Project::findOrFail($project_id);
-        try {
-            $user = User::where('email', $request->email)->firstOrFail();
-        } catch (\Throwable $th) {
-            abort(404, ['error', 'No registered user found.']);
-        }
         $project->email_responses()->attach([
-            'user_id' => $user->id,
+            'user_id' => auth()->id(),
         ], [
             'subject' =>  auth()->user()->name . 'is refering you ' . $project->name,
             'body' => $request->message,
+            'refered_email' => $request->email,
+            'name' => $request->name,
         ]);
-        $mailData = ['name' => $user->name, 'subject' => auth()->user()->name . 'is refering you ' . $project->name, 'project' => $project];
+        $mailData = ['name' => $request->name, 'subject' => auth()->user()->name . 'is refering you ' . $project->name, 'project' => $project, 'body' => $request->message];
         Mail::to($request->email)->send(new ReferenceMail($mailData));
         return back();
     }
