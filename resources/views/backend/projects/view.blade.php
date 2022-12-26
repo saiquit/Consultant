@@ -170,6 +170,19 @@
                                 </div>
                             </div>
                         </div>
+                        @if (auth()->user()->type == 'expert' || auth()->user()->type == 'admin')
+                            <div class="card-box mb-30 p-3">
+                                <h5 class="mb-10">Refer a Expert</h5>
+                                <div class="form-group">
+                                    <input type="search" name="search_exp" placeholder="Search Here"
+                                        class="search_box_exp form-control search-input" id="">
+                                </div>
+                                <div class="pd-20 card-box height-100-p">
+                                    <div class="list-group search_exp_result">
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
                         @if (auth()->user()->type == 'admin')
                             <div class="card-box mb-30">
                                 <h5 class="pd-20 h5 mb-0">Experts requests</h5>
@@ -202,17 +215,6 @@
                                             </li>
                                         @endforeach
                                     </ul>
-                                </div>
-                            </div>
-                            <div class="card-box mb-30 p-3">
-                                <h5 class="mb-10">Refer a Expert</h5>
-                                <div class="form-group">
-                                    <input type="search" name="search_exp" placeholder="Search Here"
-                                        class="search_box_exp form-control search-input" id="">
-                                </div>
-                                <div class="pd-20 card-box height-100-p">
-                                    <div class="list-group search_exp_result">
-                                    </div>
                                 </div>
                             </div>
 
