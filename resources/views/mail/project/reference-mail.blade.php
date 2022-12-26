@@ -9,20 +9,8 @@
     Dear {{ $data['name'] }}
     <hr>
 @endsection
-@section('body')
-    A user refered you to
-    <br>
-    <hr>
-    <div class="p-4 bg-info">
-        <p>
-            {{ $data['body'] }}
-        </p>
-    </div>
-    <br>
-    <a href="{{ route('admin.projects.show', $data['project']['id']) }}" class="btn btn-primary hero-primary">Open project</a>
-@endsection
 
-@section('para1')
+@section('para-1')
     You are considered as a potential canditate for a project with paid/payment method.
     <br>
     <hr>
@@ -40,8 +28,8 @@
     @include('vendor.mail.html.custom-btn', [
         'data' => ['url' => route('admin.projects.show', $data['project']['id']), 'slot' => 'Go to Project'],
     ])
-
+    <br>
     @include('vendor.mail.html.custom-btn', [
-        'data' => ['url' => route('admin.projects.show', $data['project']['id']), 'slot' => 'Go to Project'],
+        'data' => ['url' => route('home', $data['project']['id']), 'slot' => 'Go Home'],
     ])
 @endsection

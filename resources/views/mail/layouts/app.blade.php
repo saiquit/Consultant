@@ -250,36 +250,6 @@
                                                 </tbody>
                                             </table>
 
-                                            <table id="u_content_image_1" style="font-family:'Open Sans',sans-serif;"
-                                                role="presentation" cellpadding="0" cellspacing="0" width="100%"
-                                                border="0">
-                                                <tbody>
-                                                    <tr>
-                                                        <td class="v-container-padding-padding"
-                                                            style="overflow-wrap:break-word;word-break:break-word;padding:10px 10px 0px;font-family:'Open Sans',sans-serif;"
-                                                            align="left">
-
-                                                            <table width="100%" cellpadding="0" cellspacing="0"
-                                                                border="0">
-                                                                <tr>
-                                                                    <td style="padding-right: 0px;padding-left: 0px;"
-                                                                        align="center">
-
-                                                                        <img align="center" border="0"
-                                                                            src="{{ asset('b/src/images/img1.jpg') }}"
-                                                                            alt="" title=""
-                                                                            style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: inline-block !important;border: none;height: auto;float: none;width: 55%;max-width: 319px;"
-                                                                            width="319"
-                                                                            class="v-src-width v-src-max-width" />
-
-                                                                    </td>
-                                                                </tr>
-                                                            </table>
-
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
 
                                             <!--[if (!mso)&(!IE)]><!-->
                                         </div>
@@ -323,7 +293,7 @@
                                                             <div
                                                                 style="line-height: 140%; text-align: justify; word-wrap: break-word;">
                                                                 <p style="font-size: 14px; line-height: 140%;">
-                                                                    <strong>Hello @yield('to')</strong>,
+                                                                    <strong>Hello @yield('to')</strong>
                                                                 </p>
                                                                 <p style="font-size: 14px; line-height: 140%;"> </p>
                                                                 <p style="font-size: 14px; line-height: 140%;">
@@ -366,7 +336,7 @@
                                                 <tbody>
                                                     <tr>
                                                         <td class="v-container-padding-padding"
-                                                            style="overflow-wrap:break-word;word-break:break-word;padding:10px 10px 10px 30px;font-family:'Open Sans',sans-serif;"
+                                                            style="overflow-wrap:break-word;word-break:break-word;padding:10px 10px 10px 30px;font-family:'Open Sans',sans-serif; display: flex; justify-content: space-around;"
                                                             align="left">
 
                                                             <!--[if mso]><style>.v-button {background: transparent !important;}</style><![endif]-->
