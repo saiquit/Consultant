@@ -29,10 +29,11 @@ Route::group([
     });
     //Todo: Delete this
     // Route::get('mail-test', function () {
-    //     return view('mail.welcome', [
+    //     return view('mail.project.reference-mail', [
     //         'data' => [
     //             'name' => 'Name',
-    //             'subject' => 'Subject of the mail'
+    //             'subject' => 'Subject of the mail',
+    //             'project' => ['id' => 1]
     //         ]
     //     ]);
     // });
