@@ -32,7 +32,7 @@
                             @csrf
                             <a href="modal" data-toggle="modal" data-target="#modal" class="edit-avatar"><i
                                     class="fa fa-pencil"></i></a>
-                            @if (auth()->user())
+                            @if (auth()->user->type == 'expert')
                                 <img src="@if ($user->profile->img) {{ url('/storage/profile/' . $user->profile->img) }} @else /b/vendors/images/photo1.jpg @endif"
                                     alt="" class="avatar-photo">
                             @else
