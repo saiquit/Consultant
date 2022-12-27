@@ -32,7 +32,7 @@
                             @csrf
                             <a href="modal" data-toggle="modal" data-target="#modal" class="edit-avatar"><i
                                     class="fa fa-pencil"></i></a>
-                            @if (auth()->user->type == 'expert')
+                            @if ($user->type == 'expert')
                                 <img src="@if ($user->profile->img) {{ url('/storage/profile/' . $user->profile->img) }} @else /b/vendors/images/photo1.jpg @endif"
                                     alt="" class="avatar-photo">
                             @else
@@ -88,19 +88,15 @@
                             @elseif ($user->type == 'company')
                                 <li>
                                     <span>Email Address:</span>
-                                    {{ $user->company_profile->email }}
+                                    {{ $user->company_profile->c_email }}
                                 </li>
                                 <li>
                                     <span>Phone Number:</span>
                                     {{ $user->company_profile->tel }}
                                 </li>
                                 <li>
-                                    <span>Country:</span>
-                                    {{ $user->company_profile->country }}
-                                </li>
-                                <li>
                                     <span>Address:</span>
-                                    {{ $user->company_profile->address }}
+                                    {{ $user->company_profile->c_address }}
                                 </li>
                             @endif
 
@@ -177,7 +173,7 @@
                                         <form method="POST" action="{{ route('admin.profile.update', []) }}">
                                             {{ csrf_field() }}
                                             <ul class="profile-edit-list row">
-                                                @if (auth()->user()->type == 'expert')
+                                                @if ($user->type == 'expert')
                                                     <li class="weight-500 col-md-12">
                                                         <div class="card-box overflow-hidden p-4 mb-3">
                                                             <h4 class="text-blue h5 mb-20">About</h4>
@@ -329,7 +325,7 @@
                                                                     style="width: 100%">
                                                                     @foreach ($expertises as $expertise)
                                                                         <option
-                                                                            @if (auth()->user()->expertises->contains($expertise->id)) selected @endif
+                                                                            @if ($user->expertises->contains($expertise->id)) selected @endif
                                                                             value="{{ $expertise->id }}">
                                                                             {{ $expertise->name }}</option>
                                                                     @endforeach
@@ -353,7 +349,7 @@
                                                                 class="btn btn-primary" value="Update Information">
                                                         </div>
                                                     </li>
-                                                @elseif (auth()->user()->type == 'company')
+                                                @elseif ($user->type == 'company')
                                                     <li class="weight-500 col-md-12">
                                                         <h4 class="text-blue h5 mb-20">Edit Your Personal Setting</h4>
                                                         <div class="form-group">

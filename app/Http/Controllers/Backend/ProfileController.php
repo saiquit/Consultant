@@ -98,27 +98,6 @@ class ProfileController extends Controller
     {
 
         if (auth()->user()->type == 'expert') {
-            $validator = Validator::make($request->all(), [
-                'tel' => 'string|max:255',
-                'first_name' => 'string|max:255|required',
-                'last_name' => 'string|max:255|required',
-                'address'   => 'string',
-                'district' => 'string',
-                'country' => 'string',
-                'date_birth' => 'date',
-                'gender' => 'string',
-                'previous_organization' => 'string|nullable',
-                'present_organization' => 'string|nullable',
-                'experience' => 'integer|nullable',
-                'company_type' => 'string|nullable',
-                'current_position' => 'string|nullable',
-                'depertment' => 'string|nullable',
-                'short_bio' => 'string|nullable',
-                'interest_share' => 'nullable',
-            ]);
-            if ($validator->fails()) {
-                return back()->withErrors($validator);
-            }
             $request->interest_share == 'on' ? $request['interest_share'] = true : $request['interest_share'] = false;
             $profile = auth()->user()->profile()->update($request->except(['_token', 'expertises']));
             auth()->user()->complete = 1;
@@ -126,18 +105,6 @@ class ProfileController extends Controller
             auth()->user()->expertises()->sync($request->expertises);
             return redirect()->back()->with('profile', $profile);
         } elseif (auth()->user()->type == 'company') {
-            $validator = Validator::make($request->all(), [
-                'tel' => 'string|max:255',
-                'c_name' => 'string|max:255|required',
-                'type' => 'string|nullable',
-                'c_email' => 'email',
-                'address' => 'string|nullable',
-                'contact_person' => 'string|nullable',
-
-            ]);
-            if ($validator->fails()) {
-                return back()->withErrors($validator);
-            }
             $profile = auth()->user()->company_profile()->firstOrCreate();
             $profile->update($request->except(['_token']));
             auth()->user()->complete = 1;
