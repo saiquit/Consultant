@@ -28,6 +28,11 @@ class CreateProfilesTable extends Migration
             $table->string('img')->nullable();
             $table->string('previous_organization', 100)->nullable();
             $table->string('present_organization', 100)->nullable();
+            $table->string('company_type')->nullable();
+            $table->string('current_position')->nullable();
+            $table->string('depertment')->nullable();
+            $table->text('short_bio')->nullable();
+            $table->boolean('interest_share')->nullable()->default(true);
             $table->integer('experience')->unsigned()->nullable();
             $table->timestamps();
         });

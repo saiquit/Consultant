@@ -54,6 +54,7 @@ Route::group([
     Route::prefix('profile')->as('profile.')->group(function () {
         Route::get('/', 'ProfileController@index')->name('index');
         Route::post('/update', 'ProfileController@update')->name('update');
+        Route::post('/profile_img', 'ProfileController@img_update')->name('profile_img');
     });;
     // Request a project
     Route::post('/reqForProject/{project}', 'ComController@reqForProject')->name('reqForProject');
@@ -64,7 +65,6 @@ Route::group([
     //Email
     Route::post('/response/project/{project}', 'EmailController@projectRequestResponse')->name('res-pro');
     //img_upload
-    Route::post('profile_img', 'ProfileController@img_update')->name('profile_img');
 });
 
 Auth::routes();

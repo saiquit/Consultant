@@ -16,7 +16,7 @@ class EmailController extends Controller
     {
         $request->validate([
             'email' => 'email|required',
-            'message' => 'required',
+            // 'message' => 'required',
             'name' => 'required',
         ]);
         $project = Project::findOrFail($project_id);
@@ -24,11 +24,11 @@ class EmailController extends Controller
             'user_id' => auth()->id(),
         ], [
             'subject' =>  auth()->user()->name . 'is refering you ' . $project->name,
-            'body' => $request->message,
+            // 'body' => $request->message,
             'refered_email' => $request->email,
             'name' => $request->name,
         ]);
-        $mailData = ['name' => $request->name, 'subject' => auth()->user()->name . 'is refering you ' . $project->name, 'project' => $project, 'body' => $request->message];
+        $mailData = ['name' => $request->name, 'subject' => auth()->user()->name . 'is refering you ' . $project->name, 'project' => $project];
         Mail::to($request->email)->send(new ReferenceMail($mailData));
         return back();
     }

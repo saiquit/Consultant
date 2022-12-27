@@ -22,6 +22,8 @@ class CreateCompanyProfilesTable extends Migration
             $table->string('type')->nullable();
             $table->string('contact_person')->nullable();
             $table->char('tel', 255)->nullable();
+            $table->string('img')->nullable();
+
             $table->timestamps();
         });
     }

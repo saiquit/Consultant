@@ -110,10 +110,16 @@ class ProfileController extends Controller
                 'previous_organization' => 'string|nullable',
                 'present_organization' => 'string|nullable',
                 'experience' => 'integer|nullable',
+                'company_type' => 'string|nullable',
+                'current_position' => 'string|nullable',
+                'depertment' => 'string|nullable',
+                'short_bio' => 'string|nullable',
+                'interest_share' => 'nullable',
             ]);
             if ($validator->fails()) {
                 return back()->withErrors($validator);
             }
+            $request->interest_share == 'on' ? $request['interest_share'] = true : $request['interest_share'] = false;
             $profile = auth()->user()->profile()->update($request->except(['_token', 'expertises']));
             auth()->user()->complete = 1;
             auth()->user()->save();
@@ -127,6 +133,7 @@ class ProfileController extends Controller
                 'c_email' => 'email',
                 'address' => 'string|nullable',
                 'contact_person' => 'string|nullable',
+
             ]);
             if ($validator->fails()) {
                 return back()->withErrors($validator);
@@ -143,8 +150,13 @@ class ProfileController extends Controller
 
     public function img_update(Request $request)
     {
+        $profile;
         $request->validate(['img' => 'nullable|image|mimes:jpeg,jpg,png,gif']);
-        $profile = Profile::findOrfail(auth()->user()->id);
+        if (auth()->user()->type == 'expert') {
+            $profile = auth()->user()->profile;
+        } else {
+            $profile = auth()->user()->company_profile;
+        }
         $img_name = $profile->id . '.' .  $request->file('img')->extension();
         if (Storage::exists('profile/' . $img_name)) {
             Storage::delete('profile/' . $img_name);

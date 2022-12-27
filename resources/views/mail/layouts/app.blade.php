@@ -128,6 +128,7 @@
             }
 
             #u_content_button_1 .v-container-padding-padding {
+                display: block;
                 padding: 10px !important;
             }
 
@@ -336,7 +337,7 @@
                                                 <tbody>
                                                     <tr>
                                                         <td class="v-container-padding-padding"
-                                                            style="overflow-wrap:break-word;word-break:break-word;padding:10px 10px 10px 30px;font-family:'Open Sans',sans-serif; display: flex; justify-content: space-around;"
+                                                            style="overflow-wrap:break-word;word-break:break-word;padding:10px 10px 10px 30px;font-family:'Open Sans',sans-serif; display: flex;"
                                                             align="left">
 
                                                             <!--[if mso]><style>.v-button {background: transparent !important;}</style><![endif]-->
@@ -417,7 +418,7 @@
 
 
 
-                    <div class="u-row-container" style="padding: 0px;background-color: transparent">
+                    {{-- <div class="u-row-container" style="padding: 0px;background-color: transparent">
                         <div class="u-row"
                             style="Margin: 0 auto;min-width: 320px;max-width: 600px;overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;background-color: transparent;">
                             <div
@@ -588,7 +589,7 @@
                                 <!--[if (mso)|(IE)]></tr></table></td></tr></table><![endif]-->
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
 
 
                     <!--[if (mso)|(IE)]></td></tr></table><![endif]-->
