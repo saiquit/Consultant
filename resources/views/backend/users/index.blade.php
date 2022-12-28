@@ -14,6 +14,7 @@
             <table class="data-table table stripe hover nowrap">
                 <thead>
                     <tr>
+                        <th class="">ID</th>
                         <th class="table-plus datatable-nosort">Name</th>
                         <th>Sent Request</th>
                         <th>Experties</th>
@@ -26,13 +27,14 @@
                     @foreach ($users as $user)
                         @if ($user->type == 'expert')
                             <tr>
-                                <td class="table-plus">{{ $user->name }}</td>
+                                <td class="">{{ $user->id }}</td>
+                                <td class="">{{ $user->name }}</td>
                                 <td>
                                     <span class="">{{ $user->email_receivers()->count() }}</span>
                                 </td>
                                 <td>
                                     @foreach ($user->expertises as $expertise)
-                                        <span class="badge badge-info">{{ $expertise->name }}</span>
+                                        <span class="badge badge-info mb-1">{{ $expertise->name }}</span>
                                     @endforeach
                                 </td>
                                 <td>{{ $user->email }} </td>

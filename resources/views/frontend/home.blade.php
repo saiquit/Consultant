@@ -52,29 +52,7 @@
     <div class="team-profile team-padding">
         <div class="container">
             <div class="row">
-                <div class="col-xl-4 col-lg-4 col-md-6">
-                    <div class="single-profile mb-30">
-                        <!-- Front -->
-                        <div class="single-profile-front">
-                            <div class="profile-img">
-                                <img src="f/assets/img/team/team_1.jpg" alt="">
-                            </div>
-                            <div class="profile-caption">
-                                <h4><a href="#">Business Planning</a></h4>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                    incididunt ut labore .</p>
-                            </div>
-                        </div>
-
-                        <div class="single-profile-back">
-                            <h2>This is the back</h2>
-                            <p>Lorem ipsum dolor sit amet.</p>
-                            <a href="#">Lorem, ipsum.</a>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-lg-4 col-md-6">
+                <div class="col-xl-6 col-lg-6 col-md-6">
                     <div class="single-profile mb-30">
                         <!-- Front -->
                         <div class="single-profile-front">
@@ -82,20 +60,55 @@
                                 <img src="f/assets/img/team/team_2.jpg" alt="">
                             </div>
                             <div class="profile-caption">
-                                <h4><a href="#">Financial Projections</a></h4>
+                                <h4><a href="#">The Consultative Process</a></h4>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
                                     incididunt ut labore .</p>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-4 col-lg-4 col-md-6">
+                <div class="col-xl-6 col-lg-6 col-md-6">
+                    <div class="single-profile mb-30">
+                        <!-- Front -->
+                        <div class="single-profile-front">
+                            <div class="profile-img">
+                                <img src="f/assets/img/team/team_2.jpg" alt="">
+                            </div>
+                            <div class="profile-caption">
+                                <h4><a href="#">Benefits & compensation</a></h4>
+                                <p>"For every succesfull project expertise will be paid as per company offerings.
+                                    For a successful refereel you will be paid 20% from that project."
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-12 col-lg-12 col-md-12">
                     <div class="single-profile mb-30">
                         <!-- Back -->
                         <div class="single-profile-back-last">
                             <h2>What we do for you</h2>
-                            <p>Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore smod tem
-                                magna aliqua. Ut enim.</p>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">Support Primary research data (like market value, market leader
+                                    & share % , Consumer perception data & Process cost etc.
+                                </li>
+                                <li class="list-group-item">New Product Development or modification
+                                </li>
+                                <li class="list-group-item">Assistance to proper machine selection , purchased & setup
+                                </li>
+                                <li class="list-group-item">Provide plant layout design & syncronize process
+                                </li>
+                                <li class="list-group-item">Machine breakdown maintenance/Repair ,OEE,TPM
+                                </li>
+                                <li class="list-group-item">Product related problem solving
+                                </li>
+                                <li class="list-group-item">Manpower efficiency improve training, manpower rationalization
+                                </li>
+                                <li class="list-group-item">Cost reduction project
+                                </li>
+                                <li class="list-group-item">Support Documentation & certification
+                                </li>
+                            </ul>
                             <a href="#">View profile »</a>
                         </div>
                     </div>
@@ -144,7 +157,7 @@
     <!-- services Area End-->
 
     <!-- We Trusted Start-->
-    <div class="we-trusted-area trusted-padding">
+    <div class="we-trusted-area ">
         <div class="container">
             <div class="row d-flex align-items-end">
                 <div class="col-xl-7 col-lg-7">
@@ -154,11 +167,24 @@
                 </div>
                 <div class="col-xl-5 col-lg-5">
                     <div class="trusted-caption">
-                        <h2>We are more trusted then 5000 clients</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostru dolor
-                            sit amet, consectetur adipn.</p>
-                        <a href="#" class="btn trusted-btn">Learn More</a>
+                        <h2>Why Xpertgroupbd</h2>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item bg-transparent">Get the right expertise with less cost and faster
+                                than traditional
+                                consulting firms</li>
+                            <li class="list-group-item bg-transparent">Easy payment system</li>
+                            <li class="list-group-item bg-transparent">Quick decisions making with expert advice, knowledge,
+                                and support
+                                eliminate sudden & long time moving problems and pitfalls.</li>
+                            <li class="list-group-item bg-transparent">Reduce Process Cost & process optimization</li>
+                            <li class="list-group-item bg-transparent">Process automation & Reduce manpower</li>
+                            <li class="list-group-item bg-transparent">Increase machine utilization & reduction of power
+                                consumption
+                            </li>
+                            <li class="list-group-item bg-transparent">Machine breakdown maintenance</li>
+                            <li class="list-group-item bg-transparent"></li>
+                        </ul>
+                        {{-- <a href="#" class="btn trusted-btn">Learn More</a> --}}
                     </div>
                 </div>
             </div>
