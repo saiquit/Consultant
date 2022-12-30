@@ -17,4 +17,13 @@ class HomeController extends Controller
     {
         return view('frontend.about');
     }
+    public function requestEmail(Request $request)
+    {
+        # code...
+    }
+    public function requestForService()
+    {
+        $services = Service::all(['name', 'id']);
+        return json_encode($services);
+    }
 }

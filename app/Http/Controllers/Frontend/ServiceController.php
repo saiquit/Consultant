@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Models\Service;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ServiceController extends Controller
 {
@@ -15,7 +16,7 @@ class ServiceController extends Controller
      */
     public function index()
     {
-        $services = Service::all(['name', 'slug', 'about']);
+        $services = Service::all(['name', 'slug', 'about', 'icon']);
         return view('frontend.services.index', compact('services'));
     }
 
@@ -49,8 +50,14 @@ class ServiceController extends Controller
     public function show($slug)
     {
         $service = Service::where('slug', $slug)->firstOrFail();
+        $applied_user_count = DB::table('project_user')->whereIn('project_id', $service->projects()->pluck('id')->toArray())->count();
+        // dd($service->subitems);
+        return view('frontend.services.show', compact('service', 'applied_user_count'));
+    }
 
-        return view('frontend.services.show', compact('service'));
+    public function contact(Type $var = null)
+    {
+        # code...
     }
 
     /**

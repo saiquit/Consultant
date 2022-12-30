@@ -17,6 +17,8 @@ class CreateServicesTable extends Migration
             $table->id();
             $table->string('name', 255);
             $table->string('slug', 255);
+            $table->string('icon', 255)->nullable();
+            $table->longText('subitems', 255)->nullable();
             $table->longText('description')->nullable();
             $table->longText('about')->nullable();
             $table->timestamps();

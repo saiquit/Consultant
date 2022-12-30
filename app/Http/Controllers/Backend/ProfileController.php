@@ -118,7 +118,7 @@ class ProfileController extends Controller
     public function img_update(Request $request)
     {
         $profile;
-        $request->validate(['img' => 'nullable|image|mimes:jpeg,jpg,png,gif']);
+        $request->validate(['img' => 'nullable|image|mimes:jpeg,jpg,png']);
         if (auth()->user()->type == 'expert') {
             $profile = auth()->user()->profile;
         } else {

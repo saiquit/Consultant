@@ -1,9 +1,12 @@
 .services-details {
     // background-color: rgba($color: $heading-color, $alpha: 0.5);
-    background-image: url("/f/assets/img/banner/banner.png");
+    background-image: url("/f/assets/img/hero/hero-1.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     padding: 100px 0px;
+    background-size: 135%;
+    background-position: center;
+
     .s-detailsImg {
         & img {
             margin-bottom: 90px;

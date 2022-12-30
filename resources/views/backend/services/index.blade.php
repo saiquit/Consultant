@@ -17,8 +17,9 @@
             <div class="card mb-3 w-100">
                 <div class="row g-0">
                     <div class="col-md-4">
-                        <img class="card-img-bottom" style="height: 200px" src="/b/vendors/images/img5.jpg"
-                            alt="Card image cap">
+                        <img src="@if ($service->icon) {{ url('/storage/service/icons/' . $service->icon) }} @else /b/vendors/images/photo1.jpg @endif"
+                            style="height: 200px" alt="" class="card-img-bottom">
+                        {{-- <img class="" src="/b/vendors/images/img5.jpg" alt="Card image cap"> --}}
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">

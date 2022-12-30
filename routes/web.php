@@ -20,6 +20,8 @@ Route::group([
 ], function () {
     Route::get('/', 'HomeController@home')->name('home');
     Route::get('/about', 'HomeController@about')->name('about');
+    Route::post('/request-email', 'HomeController@requestEmail')->name('request-email');
+    Route::post('/request-service', 'HomeController@requestForService')->name('request-service');
     Route::group([
         'as' => 'services.',
         'prefix' => 'services',

@@ -8,18 +8,17 @@
     <div class="slider-area ">
         <!-- Mobile Menu -->
         <div class="slider-active">
-            <div class="single-slider slider-height d-flex align-items-center"
-                data-background="f/assets/img/hero/h1_hero.jpg">
+            <div class="single-slider slider-height d-flex align-items-center" data-background="f/assets/img/hero/hero-1.jpg">
                 <div class="container">
                     <div class="row">
                         <div class="col-xl-6 col-lg-6 col-md-8">
                             <div class="hero__caption">
-                                <p data-animation="fadeInLeft" data-delay=".4s">Welcome to Buson Edited</p>
+                                <p data-animation="fadeInLeft" data-delay=".4s">Welcome to Xpertgroupbd</p>
                                 <h1 data-animation="fadeInLeft" data-delay=".6s">We help you to grow your business
                                 </h1>
                                 <!-- Hero-btn -->
                                 <div class="hero__btn" data-animation="fadeInLeft" data-delay=".8s">
-                                    <a href="industries.html" class="btn hero-btn">Learn More</a>
+                                    <a href="{{ route('about') }}" class="btn hero-btn">Learn More</a>
                                 </div>
                             </div>
                         </div>
@@ -27,17 +26,17 @@
                 </div>
             </div>
             <div class="single-slider slider-height d-flex align-items-center"
-                data-background="f/assets/img/hero/h1_hero.jpg">
+                data-background="f/assets/img/hero/hero-2.jpg">
                 <div class="container">
                     <div class="row">
                         <div class="col-xl-6 col-lg-6 col-md-8">
                             <div class="hero__caption">
-                                <p data-animation="fadeInLeft" data-delay=".4s">Welcome to Buson</p>
-                                <h1 data-animation="fadeInLeft" data-delay=".6s">We help you to grow your business
+                                <p data-animation="fadeInLeft" data-delay=".4s">Welcome to Xpertgroupbd</p>
+                                <h1 data-animation="fadeInLeft" data-delay=".6s">We help you on your journey
                                 </h1>
                                 <!-- Hero-btn -->
                                 <div class="hero__btn" data-animation="fadeInLeft" data-delay=".8s">
-                                    <a href="industries.html" class="btn hero-btn">Learn More</a>
+                                    <a href="{{ route('about') }}" class="btn hero-btn">Learn More</a>
                                 </div>
                             </div>
                         </div>
@@ -57,12 +56,12 @@
                         <!-- Front -->
                         <div class="single-profile-front">
                             <div class="profile-img">
-                                <img src="f/assets/img/team/team_2.jpg" alt="">
+                                <img src="f/assets/img/team/team-1.jpg" alt="">
                             </div>
                             <div class="profile-caption">
-                                <h4><a href="#">The Consultative Process</a></h4>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                    incididunt ut labore .</p>
+                                <h4><a href="#">Our mission</a></h4>
+                                <p>Our mission is to empower business decision makers through fast, accurate and
+                                    personalized knowledge-sharing solutions.</p>
                             </div>
                         </div>
                     </div>
@@ -72,7 +71,7 @@
                         <!-- Front -->
                         <div class="single-profile-front">
                             <div class="profile-img">
-                                <img src="f/assets/img/team/team_2.jpg" alt="">
+                                <img src="f/assets/img/team/team-2.jpg" alt="">
                             </div>
                             <div class="profile-caption">
                                 <h4><a href="#">Benefits & compensation</a></h4>
@@ -162,7 +161,7 @@
             <div class="row d-flex align-items-end">
                 <div class="col-xl-7 col-lg-7">
                     <div class="trusted-img">
-                        <img src="f/assets/img/team/wetrusted.jpg" alt="">
+                        <img src="f/assets/img/team/whyus.jpg" alt="">
                     </div>
                 </div>
                 <div class="col-xl-5 col-lg-5">
@@ -194,7 +193,7 @@
     <!-- We Trusted End-->
 
     <!-- Completed Cases Start -->
-    <div class="completed-cases section-padding3">
+    {{-- <div class="completed-cases section-padding3">
         <div class="container-fluid">
             <div class="row">
                 <!-- slider Heading -->
@@ -235,11 +234,11 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
     <!-- Completed Cases end -->
 
     <!-- Testimonial Start -->
-    <div class="testimonial-area fix">
+    {{-- <div class="testimonial-area fix">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-xl-9 col-lg-9 col-md-9">
@@ -296,11 +295,11 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
     <!-- Testimonial End -->
 
     <!-- Recent Area Start -->
-    <div class="recent-area section-paddingt">
+    {{-- <div class="recent-area section-paddingt">
         <div class="container">
             <!-- section tittle -->
             <div class="row">
@@ -349,6 +348,6 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
     <!-- Recent Area End-->
 @endsection

@@ -12,13 +12,14 @@
             <div class="col-xl-7 col-lg-7 col-md-7">
                 <!-- Contact form Start -->
                 <div class="form-wrapper">
-                    <form id="contact-form" action="#" method="POST">
+                    <form id="contact-form" action="{{ route('request-email') }}" method="POST">
+                        @csrf
                         <div class="row">
                             <div class="col-lg-12 col-md-6">
                                 <div class="form-box  mb-10">
                                     <div class="wrapper">
-                                        <input type="radio" name="select" id="option-1" checked>
-                                        <input type="radio" name="select" id="option-2">
+                                        <input type="radio" name="type" id="option-1" checked>
+                                        <input type="radio" name="type" id="option-2">
                                         <label for="option-1" class="option option-1">
                                             <div class="dot"></div>
                                             <span>Industry</span>
@@ -37,16 +38,18 @@
                             </div>
                             <div class="col-lg-6 col-md-6">
                                 <div class="form-box mb-30">
-                                    <input type="text" name="email" placeholder="Phone">
+                                    <input type="text" name="phone" placeholder="Phone">
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-12">
+                                <div class="form-box mb-30">
+                                    <input type="email" name="email" placeholder="Email">
                                 </div>
                             </div>
                             <div class="col-lg-8 col-md-8 mb-30">
                                 <div class="select-itms">
-                                    <select name="select" id="select1">
+                                    <select name="services" id="select1">
                                         <option value="">Services</option>
-                                        <option value="">Services-1</option>
-                                        <option value="">Services-2</option>
-                                        <option value="">Services-3</option>
                                     </select>
                                 </div>
                             </div>
