@@ -10,7 +10,7 @@
                                 <ul>
                                     {{-- <li><i class="fas fa-map-marker-alt"></i>65/A, 17th floor, Kings land, New York
                                     </li> --}}
-                                    <li><i class="fas fa-envelope"></i>info@consulting.com</li>
+                                    <li><i class="fas fa-envelope"></i>office@xpertgroupbd.com</li>
                                 </ul>
                             </div>
                             <div class="header-info-right">
