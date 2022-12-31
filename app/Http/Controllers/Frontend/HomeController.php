@@ -15,7 +15,7 @@ class HomeController extends Controller
 {
     public function home(Request $request)
     {
-        $services = Service::latest()->limit(6)->get(['name', 'slug', 'about']);
+        $services = Service::limit(6)->get(['name', 'slug', 'about']);
         return view('frontend.home', compact('services'));
     }
     public function about(Request $request)
