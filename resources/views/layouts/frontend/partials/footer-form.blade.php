@@ -6,8 +6,7 @@
             <div class="col-xl-4 col-lg-5 col-md-5">
                 <div class="request-content">
                     <h3>Request for Call Back</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                        incididunt ut labore,</p>
+                    <p>To get easy, quick and acurate solution from our expertise.</p>
                 </div>
             </div>
             <div class="col-xl-7 col-lg-7 col-md-7">
@@ -47,14 +46,19 @@
                                     <input type="email" name="email" placeholder="Email">
                                 </div>
                             </div>
-                            <div class="col-lg-8 col-md-8 mb-30">
+                            <div class="col-lg-12 col-md-12 mb-30">
                                 <div class="select-itms">
                                     <select name="services" id="select1">
                                         <option value="">Services</option>
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-lg-4 col-md-4">
+                            <div class="col-lg-12 col-md-12 mb-30">
+                                <div class="form-box mb-30">
+                                    <input class="" name="message" placeholder="Your message" />
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-12">
                                 <button type="submit" class="send-btn">Send</button>
                             </div>
                         </div>

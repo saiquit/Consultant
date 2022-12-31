@@ -370,8 +370,11 @@
                                                             <select name="type" class="custom-select2 form-control"
                                                                 style="width: 100%">
                                                                 <option value="">Select</option>
-                                                                <option value="food">Food</option>
-                                                                <option value="poultry">Poultry</option>
+                                                                @foreach ($services as $item)
+                                                                    <option value="{{ $item->id }}">
+                                                                        {{ $item->name }}</option>
+                                                                @endforeach
+                                                                {{-- <option value="poultry">Poultry</option> --}}
                                                             </select>
                                                         </div>
                                                         <div class="form-group">

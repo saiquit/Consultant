@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\CompanyProfile;
 use App\Models\Expertise;
 use App\Models\Profile;
+use App\Models\Service;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -42,7 +43,8 @@ class ProfileController extends Controller
         }
         $expertises = Expertise::all('name', 'id', 'slug');
         $countries = DB::table('countries')->get();
-        return view('backend.profile', compact('profile', 'countries', 'expertises'));
+        $services = Service::all(['id', 'name']);
+        return view('backend.profile', compact('profile', 'countries', 'expertises', 'services'));
     }
 
     /**

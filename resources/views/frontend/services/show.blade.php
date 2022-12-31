@@ -40,7 +40,7 @@
     <section class="mt-100 mb-100">
         <div class="container">
             <div class="row pb-10">
-                <h2>About Chemical Consultants from SolutionBuggy</h2>
+                <h2>About {{ $service->name }} from Xpertgroupbd</h2>
             </div>
             <div class="row">
                 <div class="col-md-6">

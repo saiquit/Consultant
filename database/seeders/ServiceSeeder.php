@@ -22,6 +22,8 @@ class ServiceSeeder extends Seeder
             `email` VARCHAR(255) NULL,
             `phone` VARCHAR(255) NULL,
             `complete` TINYINT DEFAULT 0,
+            `message` TEXT NULL,
+            `created_at` TIMESTAMP NOT NULL DEFAULT NOW(),
             PRIMARY KEY (`id`)
         ) ENGINE=MyISAM  DEFAULT CHARSET=latin1;");
         DB::statement("CREATE TABLE IF NOT EXISTS `countries` (

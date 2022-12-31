@@ -28,7 +28,8 @@ class HomeController extends Controller
             'type' => 'required|string',
             'name' => 'string|required',
             'phone' => 'required|numeric',
-            'email' => 'required'
+            'email' => 'required|email',
+            'message' => 'string',
         ]);
         if ($validator->fails()) {
             return back()->withErrors($validator);
@@ -38,6 +39,7 @@ class HomeController extends Controller
             'name' => $request->name,
             'phone' => $request->phone,
             'email' => $request->email,
+            'message' => $request->message,
             'service_id' => $request->services,
         ]);
         return back()->with('message', 'success|We will contact with you soon!');

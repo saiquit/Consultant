@@ -8,8 +8,8 @@
                         <div class="row d-flex justify-content-between align-items-center">
                             <div class="header-info-left">
                                 <ul>
-                                    <li><i class="fas fa-map-marker-alt"></i>65/A, 17th floor, Kings land, New York
-                                    </li>
+                                    {{-- <li><i class="fas fa-map-marker-alt"></i>65/A, 17th floor, Kings land, New York
+                                    </li> --}}
                                     <li><i class="fas fa-envelope"></i>info@consulting.com</li>
                                 </ul>
                             </div>

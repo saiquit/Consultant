@@ -60,7 +60,9 @@ class UserController extends Controller
             return view('backend.users.p_view', compact('profile'));
         } elseif ($user->type == 'company') {
             $profile = $user->company_profile;
-            // dd($profile);
+            if (!$profile) {
+                $profile = $user->company_profile()->create();
+            }
             return view('backend.users.cp_view', compact('profile'));
         }
     }

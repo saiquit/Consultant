@@ -46,7 +46,7 @@ class ServiceController extends Controller
      */
     public function store(Request $request, Service $service)
     {
-        $request->validate(['icon' => 'nullable|image|mimes:jpeg,jpg,png']);
+
         if ($request->hasAny(['name', 'about', 'description'])) {
             $validation = Validator::make($request->all(), [
                 'name' => 'string|max:255|required',
@@ -64,13 +64,15 @@ class ServiceController extends Controller
                     'description' => $request->description,
                     'subitems'    => $request->subitems
                 ]);
-                $icon_name = $newService->id . '.' .  $request->file('icon')->extension();
-                if (Storage::exists('service/icons/' . $icon_name)) {
-                    Storage::delete('service/icons/' . $icon_name);
-                }
-                if ($request->hasFile('icon')) {
-                    $request->file('icon')->storeAs('service/icons/', $icon_name);
-                    $newService->update(['icon' => $icon_name]);
+                if ($request->validate(['icon' => 'nullable|image|mimes:jpeg,jpg,png'])) {
+                    $icon_name = $newService->id . '.' .  $request->file('icon')->extension();
+                    if (Storage::exists('service/icons/' . $icon_name)) {
+                        Storage::delete('service/icons/' . $icon_name);
+                    }
+                    if ($request->hasFile('icon')) {
+                        $request->file('icon')->storeAs('service/icons/', $icon_name);
+                        $newService->update(['icon' => $icon_name]);
+                    }
                 }
             }
             return view('backend.services.view', [

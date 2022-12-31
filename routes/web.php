@@ -65,6 +65,8 @@ Route::group([
     //Mark Read Notfication
     Route::post('/markAsRead', 'ComController@mark')->name('mark');
     //Email
+    Route::get('/email-request', 'EmailController@email_request_show')->name('email-request');
+    Route::get('/email-request-comp/{id}', 'EmailController@email_request_complete')->name('email-request-comp');
     Route::post('/response/project/{project}', 'EmailController@projectRequestResponse')->name('res-pro');
     //img_upload
 });

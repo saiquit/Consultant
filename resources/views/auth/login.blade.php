@@ -18,6 +18,9 @@
     <div class="login-wrap d-flex align-items-center flex-wrap justify-content-center">
         <div class="container">
             <div class="row align-items-center">
+                <div class="col-md-6 col-lg-7">
+                    <img src="/b/vendors/images/login-page-img.png" alt="">
+                </div>
                 <div class="col-md-6 col-lg-5">
                     <div class="login-box bg-white box-shadow border-radius-10">
                         <div class="login-title">

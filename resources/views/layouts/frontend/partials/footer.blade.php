@@ -13,7 +13,8 @@
                             </div>
                             <div class="footer-tittle">
                                 <div class="footer-pera">
-                                    <p>Lorem ipsum dolor sit amet, adipiscing elit, sed do eiusmod</p>
+                                    <p>Our mission is to empower business decision makers through fast, accurate and
+                                        personalized knowledge-sharing solutions.</p>
                                 </div>
                             </div>
                             <!-- social -->
@@ -60,8 +61,8 @@
                             <h4>Get in Touch</h4>
                             <ul>
                                 <li><a href="#">152-515-6565</a></li>
-                                <li><a href="#"> Demomail@gmail.com</a></li>
-                                <li><a href="#">New Orleans, USA</a></li>
+                                <li><a href="mailto:office@xpertgroupbd.com"> office@xpertgroupbd.com</a></li>
+                                {{-- <li><a href="#">New Orleans, USA</a></li> --}}
                             </ul>
                         </div>
                     </div>
