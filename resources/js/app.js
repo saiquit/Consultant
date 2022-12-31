@@ -20,4 +20,5 @@ $(document).ready(function () {
             $(".nice-select ul").append(options_nice);
         },
     });
+    $(".top_message").slideUp(5000);
 });

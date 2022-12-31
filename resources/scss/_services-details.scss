@@ -6,6 +6,9 @@
     padding: 100px 0px;
     background-size: 135%;
     background-position: center;
+    @media (max-width: 800px) {
+        background-image: none;
+    }
 
     .s-detailsImg {
         & img {

@@ -44,16 +44,16 @@
                                         <li><a href="{{ route('about', []) }}">About</a></li>
                                         <li><a href="{{ route('services.index', []) }}">Services</a></li>
                                         @auth
-                                        <li><a class="text-info" href="{{ route('admin.home', []) }}">Dashboard</a></li>
-                                        <li><a href="{{ route('logout', []) }}"
-                                                onclick="event.preventDefault(); document.getElementById('frm-logout').submit();">Logout</a>
-                                        </li>
-                                        <form id="frm-logout" action="{{ route('logout') }}" method="POST"
-                                            style="display: none;">
-                                            {{ csrf_field() }}
-                                        </form>
+                                            <li><a class="text-info" href="{{ route('admin.home', []) }}">Dashboard</a></li>
+                                            <li><a href="{{ route('logout', []) }}"
+                                                    onclick="event.preventDefault(); document.getElementById('frm-logout').submit();">Logout</a>
+                                            </li>
+                                            <form id="frm-logout" action="{{ route('logout') }}" method="POST"
+                                                style="display: none;">
+                                                {{ csrf_field() }}
+                                            </form>
                                         @else
-                                        <li><a href="{{ route('login', []) }}">Login | Register</a></li>
+                                            <li><a href="{{ route('login', []) }}">Login | Register</a></li>
                                         @endauth
                                     </ul>
                                 </nav>
@@ -61,8 +61,7 @@
                         </div>
                         <div class="col-xl-2 col-lg-3 col-md-3">
                             <div class="header-right-btn f-right d-none d-lg-block">
-                                <a href="#" data-toggle="modal" data-target="#contact-form-modal"
-                                    class="btn header-btn">Contact Now</a>
+                                <a href="#request-back-area" class="btn header-btn">Contact Now</a>
                             </div>
                         </div>
                         <!-- Mobile Menu -->

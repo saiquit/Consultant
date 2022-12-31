@@ -1,4 +1,5 @@
 <!-- Request Back Start -->
+<div id="request-back-area"></div>
 <div class="request-back-area section-padding30">
     <div class="container">
         <div class="row d-flex justify-content-between">
@@ -18,8 +19,8 @@
                             <div class="col-lg-12 col-md-6">
                                 <div class="form-box  mb-10">
                                     <div class="wrapper">
-                                        <input type="radio" name="type" id="option-1" checked>
-                                        <input type="radio" name="type" id="option-2">
+                                        <input type="radio" name="type" value="industry" id="option-1" checked>
+                                        <input type="radio" name="type" value="consultant" id="option-2">
                                         <label for="option-1" class="option option-1">
                                             <div class="dot"></div>
                                             <span>Industry</span>

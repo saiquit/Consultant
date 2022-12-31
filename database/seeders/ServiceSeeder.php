@@ -14,6 +14,16 @@ class ServiceSeeder extends Seeder
      */
     public function run()
     {
+        DB::statement("CREATE TABLE `request_call_backs` (
+            `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+            `service_id` INT UNSIGNED NULL,
+            `type` ENUM('consultant','industry') NULL,
+            `name` VARCHAR(255) NULL,
+            `email` VARCHAR(255) NULL,
+            `phone` VARCHAR(255) NULL,
+            `complete` TINYINT DEFAULT 0,
+            PRIMARY KEY (`id`)
+        )COLLATE='utf8mb4_0900_ai_ci';");
         DB::statement("CREATE TABLE IF NOT EXISTS `countries` (
             `id` int(11) NOT NULL AUTO_INCREMENT,
             `iso` char(2) NOT NULL,

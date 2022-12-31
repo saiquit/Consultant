@@ -2698,6 +2698,14 @@ hr {
   z-index: 99;
 }
 
+.top_message {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+  text-align: center;
+}
+
 .slider-height {
   min-height: 830px;
   background-repeat: no-repeat;
@@ -3163,7 +3171,7 @@ hr {
   line-height: 25px;
 }
 .services-area .single-services::before {
-  background-image: url(/f/assets/service/services_bg.png);
+  background-image: url(/f/assets/img/service/services_bg.png);
   content: "";
   position: absolute;
   min-width: 221px;
@@ -3727,6 +3735,11 @@ input[type=radio] {
   padding: 100px 0px;
   background-size: 135%;
   background-position: center;
+}
+@media (max-width: 800px) {
+  .services-details {
+    background-image: none;
+  }
 }
 .services-details .s-detailsImg img {
   margin-bottom: 90px;

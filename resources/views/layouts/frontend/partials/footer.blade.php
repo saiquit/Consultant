@@ -26,21 +26,21 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-2 col-lg-2 col-md-4 col-sm-5">
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-5">
                     <div class="single-footer-caption mb-50">
                         <div class="footer-tittle">
                             <h4>Company</h4>
                             <ul>
-                                <li><a href="index.html">Home</a></li>
-                                <li><a href="about.html">About Us</a></li>
-                                <li><a href="single-blog.html">Services</a></li>
-                                <li><a href="#">Cases</a></li>
-                                <li><a href="contact.html"> Contact Us</a></li>
+                                <li><a href="{{ route('home') }}">Home</a></li>
+                                <li><a href="{{ route('about') }}">About Us</a></li>
+                                <li><a href="{{ route('services.index') }}">Services</a></li>
+                                {{-- <li><a href="#">Cases</a></li> --}}
+                                <li><a href="#request-back-area"> Contact Us</a></li>
                             </ul>
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-7">
+                {{-- <div class="col-xl-3 col-lg-3 col-md-4 col-sm-7">
                     <div class="single-footer-caption mb-50">
                         <div class="footer-tittle">
                             <h4>Services</h4>
@@ -53,8 +53,8 @@
                             </ul>
                         </div>
                     </div>
-                </div>
-                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-5">
+                </div> --}}
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-5">
                     <div class="single-footer-caption mb-50">
                         <div class="footer-tittle">
                             <h4>Get in Touch</h4>
@@ -81,9 +81,7 @@
                                 Copyright &copy;
                                 <script>
                                     document.write(new Date().getFullYear());
-                                </script> All rights reserved | This template is made with <i
-                                    class="ti-heart" aria-hidden="true"></i> by <a href="https://colorlib.com"
-                                    target="_blank">Colorlib</a>
+                                </script> All rights reserved
                                 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                             </p>
                         </div>
