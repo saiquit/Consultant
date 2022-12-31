@@ -23,7 +23,7 @@ class ServiceSeeder extends Seeder
             `phone` VARCHAR(255) NULL,
             `complete` TINYINT DEFAULT 0,
             PRIMARY KEY (`id`)
-        )COLLATE='utf8mb4_0900_ai_ci';");
+        ) ENGINE=MyISAM  DEFAULT CHARSET=latin1;");
         DB::statement("CREATE TABLE IF NOT EXISTS `countries` (
             `id` int(11) NOT NULL AUTO_INCREMENT,
             `iso` char(2) NOT NULL,
