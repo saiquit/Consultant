@@ -60,8 +60,8 @@
                             </div>
                             <div class="profile-caption">
                                 <h4><a href="#">Our mission</a></h4>
-                                <p>Our mission is to empower business decision makers through fast, accurate and
-                                    personalized knowledge-sharing solutions.</p>
+                                <p>Our mission is to provide easy, quick and accurate solution through industry expertise
+                                    knowledge sharing to business decission makers.</p>
                             </div>
                         </div>
                     </div>
@@ -86,29 +86,21 @@
                     <div class="single-profile mb-30">
                         <!-- Back -->
                         <div class="single-profile-back-last">
-                            <h2>What we do for you</h2>
+                            <h2>Consultative Process</h2>
                             <ul class="list-group list-group-flush">
-                                <li class="list-group-item">Support Primary research data (like market value, market leader
-                                    & share % , Consumer perception data & Process cost etc.
+                                <li class="list-group-item">Request receive from client</li>
+                                <li class="list-group-item">Search expertise from database as per client requirement
                                 </li>
-                                <li class="list-group-item">New Product Development or modification
+                                <li class="list-group-item">Interview expertise & coordinate discussion between client &
+                                    expertise
                                 </li>
-                                <li class="list-group-item">Assistance to proper machine selection , purchased & setup
+                                <li class="list-group-item">Feedback from client
                                 </li>
-                                <li class="list-group-item">Provide plant layout design & syncronize process
+                                <li class="list-group-item">Payment transaction both client & expertise
                                 </li>
-                                <li class="list-group-item">Machine breakdown maintenance/Repair ,OEE,TPM
-                                </li>
-                                <li class="list-group-item">Product related problem solving
-                                </li>
-                                <li class="list-group-item">Manpower efficiency improve training, manpower rationalization
-                                </li>
-                                <li class="list-group-item">Cost reduction project
-                                </li>
-                                <li class="list-group-item">Support Documentation & certification
-                                </li>
+
                             </ul>
-                            <a href="#">View profile »</a>
+                            {{-- <a href="#">View profile »</a> --}}
                         </div>
                     </div>
                 </div>

@@ -39,6 +39,36 @@
                         {{-- <a href="#" class="btn trusted-btn">Learn More</a> --}}
                     </div>
                 </div>
+                <div class="col-xl-12 col-lg-12 col-md-12">
+                    <div class="single-profile mb-30">
+                        <!-- Back -->
+                        <div class="single-profile-back-last">
+                            <h2>What we do for you</h2>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">Support Primary research data (like market value, market leader
+                                    & share % , Consumer perception data & Process cost etc.
+                                </li>
+                                <li class="list-group-item">New Product Development or modification
+                                </li>
+                                <li class="list-group-item">Assistance to proper machine selection , purchased & setup
+                                </li>
+                                <li class="list-group-item">Provide plant layout design & syncronize process
+                                </li>
+                                <li class="list-group-item">Machine breakdown maintenance/Repair ,OEE,TPM
+                                </li>
+                                <li class="list-group-item">Product related problem solving
+                                </li>
+                                <li class="list-group-item">Manpower efficiency improve training, manpower rationalization
+                                </li>
+                                <li class="list-group-item">Cost reduction project
+                                </li>
+                                <li class="list-group-item">Support Documentation & certification
+                                </li>
+                            </ul>
+                            <a href="#">View profile »</a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
