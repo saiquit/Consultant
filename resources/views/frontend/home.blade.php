@@ -131,7 +131,7 @@
                                 </div>
                                 <div class="services-caption">
                                     <h4>{{ $service->name }}</h4>
-                                    <p>{{ Str::substr($service->about, 0, 20) }}</p>
+                                    <p>{{ Str::substr($service->about, 0, 255) }}</p>
                                 </div>
                             </div>
                         </a>
