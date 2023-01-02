@@ -68,7 +68,7 @@ class ProjectController extends Controller
     {
         if ($request->hasAny(['name', 'description'])) {
             $validation = Validator::make($request->all(), [
-                'name' => 'string|max:255|required',
+                'name' => 'string|max:255|required|unique:projects,name',
                 'description' => 'string|required',
                 'location' => 'string|required',
                 'service' => 'required|integer',

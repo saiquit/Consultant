@@ -46,7 +46,7 @@ Route::group([
     'namespace' => 'App\Http\Controllers\Backend',
     'as' => 'admin.',
     'prefix' => 'admin',
-    'middleware' => ['auth']
+    'middleware' => ['auth', 'verified']
 ], function () {
     Route::get('/', 'AdminController@home')->middleware('profile')->name('home');
     Route::resource('services', 'ServiceController')->middleware('profile');
@@ -71,4 +71,4 @@ Route::group([
     //img_upload
 });
 
-Auth::routes();
+Auth::routes(['verify' => true]);
