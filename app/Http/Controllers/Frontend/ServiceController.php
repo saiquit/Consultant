@@ -50,7 +50,8 @@ class ServiceController extends Controller
     public function show($slug)
     {
         $service = Service::where('slug', $slug)->firstOrFail();
-        $applied_user_count = DB::table('project_user')->whereIn('project_id', $service->projects()->pluck('id')->toArray())->count();
+        // dd($service->projects);
+        $applied_user_count = DB::table('email_responses')->whereIn('project_id', $service->projects()->pluck('id')->toArray())->count();
         // dd($service->subitems);
         return view('frontend.services.show', compact('service', 'applied_user_count'));
     }

@@ -141,9 +141,9 @@
                 <div class="row">
                     <div class="col-md-8 col-sm-12">
                         <div class="blog-detail card-box overflow-hidden mb-30">
-                            <div class="blog-img">
+                            {{-- <div class="blog-img">
                                 <img src="/b/vendors/images/img2.jpg" alt="">
-                            </div>
+                            </div> --}}
                             <h4 class="p-4">About</h4>
                             <div class="blog-caption">
                                 {!! $project->description !!}

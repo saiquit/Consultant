@@ -30,7 +30,9 @@ class ProjectController extends Controller
 
         $services = Service::all(['name', 'slug', 'id']);
         $pq = Project::query();
-        if (auth()->user()->type == 'admin') {
+        if (auth()->user()->type == 'company') {
+            $projects = auth()->user()->posted_projects;
+        } else {
             if ($request->has('service')) {
                 $pq->whereHas('service', function ($q) use ($request) {
                     $q->where('id', $request->service);
@@ -39,12 +41,8 @@ class ProjectController extends Controller
             if ($request->has('approved')) {
                 $pq->where('approved', $request->approved);
             }
-            $projects = $pq->orderBy('created_at', 'desc')->get();
-        } elseif (auth()->user()->type == 'company') {
-            $projects = auth()->user()->posted_projects;
-        } else {
-            $projects = $pq->where('approved', true)->latest()->get();
         }
+        $projects = $pq->orderBy('created_at', 'desc')->get();
         return view('backend.projects.index', compact('projects', 'services'));
     }
 

@@ -24,18 +24,22 @@
                         </div>
                     </div>
                 </div>
-                <div class="form-group row">
-                    <label class="col-sm-12 col-md-3 col-form-label">Filter by Approval</label>
-                    <div class="col-md-9 col-sm-12">
-                        <div class="form-group">
-                            <select id="approved" class="selectpicker form-control">
-                                <option value="">All</option>
-                                <option @if (app('request')->input('approved') == '0') selected @endif value="0">Pending</option>
-                                <option @if (app('request')->input('approved') == '1') selected @endif value="1">Approved</option>
-                            </select>
+                @if (auth()->user()->type == 'admin')
+                    <div class="form-group row">
+                        <label class="col-sm-12 col-md-3 col-form-label">Filter by Approval</label>
+                        <div class="col-md-9 col-sm-12">
+                            <div class="form-group">
+                                <select id="approved" class="selectpicker form-control">
+                                    <option value="">All</option>
+                                    <option @if (app('request')->input('approved') == '0') selected @endif value="0">Pending
+                                    </option>
+                                    <option @if (app('request')->input('approved') == '1') selected @endif value="1">Approved
+                                    </option>
+                                </select>
+                            </div>
                         </div>
                     </div>
-                </div>
+                @endif
                 <div class="form-group row">
                     <div class="col-6"> <button class="btn btn-success btn-block" type="submit">Filter</button>
                     </div>
@@ -44,8 +48,8 @@
                 </div>
 
             </div>
-            @if (auth()->user()->type == 'company' or auth()->user()->type == 'admin')
-                <a href="{{ route('admin.projects.create') }}" class="text-white">
+            @if (auth()->user()->type == 'admin')
+                <a target="_blank" href="{{ route('admin.projects.create') }}" class="text-white">
                     <button class="btn btn-primary float-right">Create A New Project <i class="dw dw-add-file text-lg"></i>
                     </button>
                 </a>
@@ -85,7 +89,7 @@
                             @endif
                             <td>{{ $project->service->name }}</td>
                             {{-- <td>{{ $project->description }} </td> --}}
-                            <td>{{ Str::substr($project->description, 0, 20) . '...' }} </td>
+                            <td>{!! Str::substr($project->description, 0, 20) . '...' !!} </td>
                             @if (auth()->user()->isAdmin())
                                 <td>
                                     {{ $project->author->name }}
