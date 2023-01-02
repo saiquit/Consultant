@@ -55,7 +55,7 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        $new_id = Project::latest('id')->first()->id + 1;
+        $new_id = Project::latest('id')->first() ? Project::latest('id')->first()->id + 1 : 1;
         $services = Service::all(['name', 'id']);
         return view('backend.projects.create', compact('services', 'new_id'));
     }

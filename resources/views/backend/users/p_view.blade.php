@@ -147,7 +147,7 @@
             </div>
             <div class="col-sm-12 col-md-12 mb-30">
                 <div class="card card-box">
-                    <h5 class="card-header weight-500">Depertment</h5>
+                    <h5 class="card-header weight-500">Department</h5>
                     <div class="card-body">
                         <h5 class="card-title">{{ $profile->depertment }}</h5>
                     </div>

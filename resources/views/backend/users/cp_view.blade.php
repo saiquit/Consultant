@@ -54,7 +54,7 @@
                 <div class="card card-box">
                     <h5 class="card-header weight-500">Type</h5>
                     <div class="card-body">
-                        <h5 class="card-title">{{ $profile->type }}</h5>
+                        <h5 class="card-title">{{ App\Models\Service::find($profile->type)->first()->name }}</h5>
                     </div>
                 </div>
             </div>

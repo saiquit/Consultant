@@ -55,10 +55,7 @@ class ServiceController extends Controller
         return view('frontend.services.show', compact('service', 'applied_user_count'));
     }
 
-    public function contact(Type $var = null)
-    {
-        # code...
-    }
+
 
     /**
      * Show the form for editing the specified resource.
