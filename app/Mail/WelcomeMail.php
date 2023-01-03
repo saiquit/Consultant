@@ -6,6 +6,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Env;
 
 class WelcomeMail extends Mailable
 {
@@ -28,6 +29,6 @@ class WelcomeMail extends Mailable
      */
     public function build()
     {
-        return $this->from(Env('MAIL_FROM_ADDRESS'))->subject('Welcome to XpertGroupBD')->view('mail.welcome', ['data' => $this->userData]);
+        return $this->from(Env('MAIL_FROM_ADDRESS'), Env('APP_NAME'))->subject('Welcome to XpertGroupBD')->view('mail.welcome', ['data' => $this->userData]);
     }
 }
