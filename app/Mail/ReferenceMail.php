@@ -28,6 +28,6 @@ class ReferenceMail extends Mailable
      */
     public function build()
     {
-        return $this->from(Env('MAIL_FROM_ADDRESS'))->subject($this->reference['subject'])->view('mail.project.reference-mail', ['data' => $this->reference]);
+        return $this->from(Env('MAIL_FROM_ADDRESS'), Env('APP_NAME'))->subject($this->reference['subject'])->view('mail.project.reference-mail', ['data' => $this->reference]);
     }
 }

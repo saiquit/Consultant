@@ -30,7 +30,7 @@ class NewProject extends Mailable
     public function build()
     {
 
-        return $this->from(Env('MAIL_FROM_ADDRESS'))->subject('New Project has been added.')->view('mail.project.new-project', [
+        return $this->from(Env('MAIL_FROM_ADDRESS'), Env('APP_NAME'))->subject('New Project has been added.')->view('mail.project.new-project', [
             'project' => $this->project,
         ]);
     }

@@ -11,6 +11,7 @@
                                     {{-- <li><i class="fas fa-map-marker-alt"></i>65/A, 17th floor, Kings land, New York
                                     </li> --}}
                                     <li><i class="fas fa-envelope"></i>office@xpertgroupbd.com</li>
+                                    <li><i class="fas fa-phone"></i>+8801602916663</li>
                                 </ul>
                             </div>
                             <div class="header-info-right">
