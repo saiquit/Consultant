@@ -60,7 +60,7 @@
                         <div class="footer-tittle">
                             <h4>Get in Touch</h4>
                             <ul>
-                                <li>a<a href="tel:01602916663">+8801602916663</a></li>
+                                <li><a href="tel:01602916663">+8801602916663</a></li>
                                 <li><a href="mailto:office@xpertgroupbd.com"> office@xpertgroupbd.com</a></li>
                                 {{-- <li><a href="#">New Orleans, USA</a></li> --}}
                             </ul>
