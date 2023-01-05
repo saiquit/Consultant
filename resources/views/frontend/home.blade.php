@@ -126,7 +126,7 @@
                         <a href="{{ route('services.show', $service->slug) }}">
                             <div class="single-services text-center mb-30">
                                 <div class="services-icon">
-                                    <img src="@if ($service->icon) {{ url('/storage/service/icons/' . $service->icon) }} @else /f/assets/img/adapt_icon/1.png @endif"
+                                <img src="@if ($service->icon) {{ url('/storage/service/icons/' . $service->icon) }} @else /f/assets/img/adapt_icon/1.png @endif"
                                         alt="" style="height: 50px; width: 50px" class=" mr-2">
                                 </div>
                                 <div class="services-caption">
