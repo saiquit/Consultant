@@ -16,10 +16,10 @@
                             </div>
                             <div class="header-info-right">
                                 <ul class="header-social">
-                                    <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                    <li> <a href="#"><i class="fab fa-google-plus-g"></i></a></li>
+                                    <li><a href="https://www.linkedin.com/in/xpertgroup-bd-126524260/"><i class="fab fa-linkedin-in"></i></a></li>
+                                    <!-- <li><a href="#"><i class="fab fa-twitter"></i></a></li> -->
+                                    <li><a href="https://m.facebook.com/groups/693963552323861/permalink/693968745656675/?mibextid=UUgoR4"><i class="fab fa-facebook-f"></i></a></li>
+                                    <!-- <li> <a href="#"><i class="fab fa-google-plus-g"></i></a></li> -->
                                 </ul>
                             </div>
                         </div>

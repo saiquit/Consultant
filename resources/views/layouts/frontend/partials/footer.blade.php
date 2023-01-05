@@ -19,10 +19,10 @@
                             </div>
                             <!-- social -->
                             <div class="footer-social">
-                                <a href="#"><i class="fab fa-facebook-square"></i></a>
-                                <a href="#"><i class="fab fa-twitter-square"></i></a>
-                                <a href="#"><i class="fab fa-linkedin"></i></a>
-                                <a href="#"><i class="fab fa-pinterest-square"></i></a>
+                                <a href="https://m.facebook.com/groups/693963552323861/permalink/693968745656675/?mibextid=UUgoR4"><i class="fab fa-facebook-square"></i></a>
+                                <!-- <a href="#"><i class="fab fa-twitter-square"></i></a> -->
+                                <a href="https://www.linkedin.com/in/xpertgroup-bd-126524260/"><i class="fab fa-linkedin"></i></a>
+                                <!-- <a href="#"><i class="fab fa-pinterest-square"></i></a> -->
                             </div>
                         </div>
                     </div>
