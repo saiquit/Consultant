@@ -13,11 +13,11 @@ class ComController extends Controller
 {
     public function reqForProject(Request $request, Project $project)
     {
-        $responseData = $project->email_responses()->attach(auth()->user()->id, ['subject' => $request->subject, 'body' => $request->body]);
-        // dd($responseData);
-        // $reference = [
-        //     'subject' => $responseData['subject'],
-        // ];
+        if ($request->has(['email'])) {
+            $responseData = $project->email_responses()->attach(auth()->user()->id, ['subject' => $request->subject, 'body' => $request->body, 'email' => $request->email]);
+        }else{
+            auth()->user()->projects()->attach($project->id,['subject' => $request->subject, 'body' => $request->body]);
+        }
         return back();
     }
     public function approve(Request $request, Project $project)

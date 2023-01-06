@@ -37,8 +37,12 @@
                                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
                                         <a class="dropdown-item" href="{{ route('admin.expertises.show', $expertise) }}"><i
                                                 class="dw dw-eye"></i> View</a>
-                                        <a class="dropdown-item" href="#"><i class="dw dw-edit2"></i> Edit</a>
-                                        <a class="dropdown-item" href="#"><i class="dw dw-delete-3"></i> Delete</a>
+                                        <a class="dropdown-item" href="{{ route('admin.expertises.edit', $expertise) }}"><i class="dw dw-edit2"></i> Edit</a>
+                                        <a onclick="document.querySelector('#delete_form').submit()" class="dropdown-item"><i class="dw dw-delete-3"></i> Delete</a>
+                                        <form id="delete_form" action="{{ route('admin.expertises.destroy', $expertise) }}" method="post">
+                                            @csrf
+                                            @method('DELETE')
+                                        </form>
                                     </div>
                                 </div>
                             </td>

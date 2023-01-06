@@ -111,8 +111,6 @@
                                             auth()->user()->isAdmin())
                                             <a class="dropdown-item" href="{{ route('admin.projects.edit', $project) }}"><i
                                                     class="dw dw-edit2"></i> Edit</a>
-                                            <a class="dropdown-item" href="#"><i class="dw dw-delete-3"></i>
-                                                Delete</a>
                                         @endif
                                         @if (auth()->user()->isAdmin())
                                             <button onclick="document.getElementById('approve_form').submit()"

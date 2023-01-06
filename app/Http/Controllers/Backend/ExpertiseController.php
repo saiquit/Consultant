@@ -80,7 +80,7 @@ class ExpertiseController extends Controller
      */
     public function edit(Expertise $expertise)
     {
-        //
+        return view('backend.expertise.edit', compact('expertise'));
     }
 
     /**
@@ -92,7 +92,23 @@ class ExpertiseController extends Controller
      */
     public function update(Request $request, Expertise $expertise)
     {
-        //
+        // dd($expertise);
+        if ($request->hasAny(['name', 'description'])) {
+            $validation = Validator::make($request->all(), [
+                'name' => 'string|max:255|required',
+                'name' => 'string|required',
+            ]);
+            if ($validation->fails()) {
+                return back()->withErrors($validation);
+            } else {
+                $expertise->update([
+                    'name' => $request->name,
+                    'slug' =>  Str::slug($request->name),
+                    'description' => $request->description
+                ]);
+            }
+            return redirect()->route('admin.expertises.show', compact('expertise'));
+        }
     }
 
     /**
@@ -103,6 +119,7 @@ class ExpertiseController extends Controller
      */
     public function destroy(Expertise $expertise)
     {
-        //
+        $expertise->delete();
+        return back()->with('message', 'Successfully deleted.');
     }
 }

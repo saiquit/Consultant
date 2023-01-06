@@ -102,6 +102,18 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+        if ($user->type == 'expert') {
+            $user->profile()->delete();
+            $user->expertises()->delete();
+            $user->projects()->delete();
+            $user->email_receivers()->delete();
+            $user->delete();
+        }
+        if ($user->type == 'company') {
+            $user->company_profile()->delete();
+            $user->posted_projects()->delete();
+            $user->delete();
+        }
+        return \redirect()->back();
     }
 }

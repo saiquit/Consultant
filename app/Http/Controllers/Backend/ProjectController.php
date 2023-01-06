@@ -33,6 +33,9 @@ class ProjectController extends Controller
         if (auth()->user()->type == 'company') {
             $projects = auth()->user()->posted_projects;
         } else {
+            if (auth()->user()->type == 'expert') {
+                $pq->where('approved', true);
+            }
             if ($request->has('service')) {
                 $pq->whereHas('service', function ($q) use ($request) {
                     $q->where('id', $request->service);
