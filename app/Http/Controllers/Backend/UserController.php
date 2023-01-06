@@ -54,6 +54,9 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
+        if (!$user) {
+            return back()->with('message', 'No profile Found.');
+        }
         // $countries = DB::table('countries')->get();
         if ($user->type == 'expert') {
             $profile =  $user->profile;
