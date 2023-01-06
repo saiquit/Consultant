@@ -29,6 +29,19 @@
                         <form method="POST" action="{{ route('register') }}">
                             @csrf
                             <div class="input-group custom">
+                                <label for="type"
+                                    class="col-md-4 col-form-label text-md-end">{{ __('Role') }}</label>
+                                <div class="col-md-8">
+                                    <div class="form-group">
+                                        <select class="custom-select2 form-control" name="type"
+                                            style="width: 100%; height: 38px;">
+                                            <option value="company">Company</option>
+                                            <option value="expert">Expert</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="input-group custom">
                                 <label for="name"
                                     class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
 
@@ -89,19 +102,7 @@
                                         name="password_confirmation" required autocomplete="new-password">
                                 </div>
                             </div>
-                            <div class="input-group custom">
-                                <label for="type"
-                                    class="col-md-4 col-form-label text-md-end">{{ __('Role') }}</label>
-                                <div class="col-md-8">
-                                    <div class="form-group">
-                                        <select class="custom-select2 form-control" name="type"
-                                            style="width: 100%; height: 38px;">
-                                            <option value="company">Company</option>
-                                            <option value="expert">Expert</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
+                            
 
                             <div class="row mb-0">
                                 <div class="col-md-6 offset-md-4">
