@@ -22,12 +22,13 @@ class UserController extends Controller
     {
         $user_q = User::query();
         $users = $user_q->where('type', '=', $request->type)->orderBy('created_at', 'desc')->get();
+        
         if ($request->type == 'expert') {
             return view('backend.users.experts', compact('users'));
         }elseif ($request->type == 'company'){
             return view('backend.users.company', compact('users'));
-        }else{
-            return view('backend.users.experts', compact('users'));
+        }else {
+            return \abort(404, 'Not found.');
         }
     }
 
