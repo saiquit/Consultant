@@ -109,7 +109,6 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        \dd($user);
         if ($user->type == 'expert') {
             $user->profile()->delete();
             $user->expertises()->delete();
