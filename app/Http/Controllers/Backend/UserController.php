@@ -27,7 +27,7 @@ class UserController extends Controller
         }elseif ($request->type == 'company'){
             return view('backend.users.company', compact('users'));
         }else{
-            // return view('backend.users.experts', compact('users'));
+            return view('backend.users.experts', compact('users'));
         }
     }
 
