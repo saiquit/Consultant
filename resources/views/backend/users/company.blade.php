@@ -49,8 +49,8 @@
                             <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
                                 <a class="dropdown-item" href="{{ route('admin.users.show', $user) }}"><i
                                         class="dw dw-eye"></i> View</a>
-                                <a class="dropdown-item" onclick="document.querySelector('#delete_form_2').submit()"><i class="dw dw-delete-3"></i> Delete</a>
-                                <form  id="delete_form_2" action="{{ route('admin.users.destroy', $user) }}" method="post">
+                                <a class="dropdown-item" onclick="document.querySelector('#delete_form_{{$user->id}}').submit()"><i class="dw dw-delete-3"></i> Delete</a>
+                                <form  id="delete_form_{{$user->id}}" action="{{ route('admin.users.destroy', $user) }}" method="post">
                                     @csrf
                                     @method('DELETE')
                                 </form>
