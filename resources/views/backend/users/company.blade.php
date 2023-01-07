@@ -6,63 +6,7 @@
 @endpush
 
 @section('content')
-<div class="card-box mb-30">
-    <div class="pd-20">
-        <h4 class="text-black h2">Experts</h4>
-    </div>
-    <div class="pb-20">
-        <table class="data-table table stripe hover nowrap">
-            <thead>
-                <tr>
-                    <th class="">ID</th>
-                    <th class="table-plus datatable-nosort">Name</th>
-                    <th>Sent Request</th>
-                    <th>Experties</th>
-                    <th>Email</th>
-                    <th>Start Date</th>
-                    <th class="datatable-nosort">Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($users as $user)
-                @if ($user->type == 'expert')
-                <tr>
-                    <td class="">{{ $user->id }}</td>
-                    <td class="">{{ $user->name }}</td>
-                    <td>
-                        <span class="">{{ $user->email_receivers()->count() }}</span>
-                    </td>
-                    <td>
-                        @foreach ($user->expertises as $expertise)
-                        <span class="badge badge-info mb-1">{{ $expertise->name }}</span>
-                        @endforeach
-                    </td>
-                    <td>{{ $user->email }} </td>
-                    <td>{{ $user->created_at->diffForHumans() }}</td>
-                    <td>
-                        <div class="dropdown">
-                            <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#"
-                                role="button" data-toggle="dropdown">
-                                <i class="dw dw-more"></i>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-                                <a class="dropdown-item" href="{{ route('admin.users.show', $user) }}"><i
-                                        class="dw dw-eye"></i> View</a>
-                                <a class="dropdown-item" onclick="document.querySelector('#delete_form').submit()"><i class="dw dw-delete-3"></i> Delete</a>
-                                <form  id="delete_form" action="{{ route('admin.users.destroy', $user) }}" method="post">
-                                    @csrf
-                                    @method('DELETE')
-                                </form>
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-                @endif
-                @endforeach
-            </tbody>
-        </table>
-    </div>
-</div>
+
 <div class="card-box mb-30">
     <div class="pd-20">
         <h4 class="text-black h2">Company</h4>
@@ -81,7 +25,6 @@
             </thead>
             <tbody>
                 @foreach ($users as $user)
-                @if ($user->type == 'company')
                 <tr>
                     <td class="table-plus">{{ $user->name }}</td>
                     <td>
@@ -115,7 +58,6 @@
                         </div>
                     </td>
                 </tr>
-                @endif
                 @endforeach
             </tbody>
         </table>

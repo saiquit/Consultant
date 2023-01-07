@@ -113,8 +113,8 @@
                         <li><a class="@if (Request::is('admin/services')) active @endif"
                                 href="{{ route('admin.services.index') }}">All Services</a></li>
                         @if (auth()->user()->type == 'admin')
-                            <li><a class="@if (Request::is('admin/services/create')) active @endif"
-                                    href="{{ route('admin.services.create') }}">Add New Service</a></li>
+                        <li><a class="@if (Request::is('admin/services/create')) active @endif"
+                                href="{{ route('admin.services.create') }}">Add New Service</a></li>
                         @endif
                     </ul>
                 </li>
@@ -126,41 +126,43 @@
                         <li><a class="@if (Request::is('admin/projects')) active @endif"
                                 href="{{ route('admin.projects.index') }}">All Projects</a></li>
                         @if (auth()->user()->type == 'admin' or auth()->user()->type == 'company')
-                            <li><a class="@if (Request::is('admin/projects/create')) active @endif"
-                                    href="{{ route('admin.projects.create') }}">Add New Project</a></li>
+                        <li><a class="@if (Request::is('admin/projects/create')) active @endif"
+                                href="{{ route('admin.projects.create') }}">Add New Project</a></li>
                         @endif
                     </ul>
                 </li>
                 @if (auth()->user()->type == 'admin')
-                    <li class="dropdown">
-                        <a href="javascript:;" class="dropdown-toggle">
-                            <span class="micon dw dw-user"></span><span class="mtext">Users</span>
-                        </a>
-                        <ul class="submenu">
-                            <li><a class="@if (Request::is('admin/users')) active @endif"
-                                    href="{{ route('admin.users.index') }}">All users</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="javascript:;" class="dropdown-toggle">
-                            <span class="micon dw dw-user-2"></span><span class="mtext">Expertises</span>
-                        </a>
-                        <ul class="submenu">
-                            <li><a class="@if (Request::is('admin/expertises')) active @endif"
-                                    href="{{ route('admin.expertises.index') }}">All expertises</a></li>
-                            <li><a class="@if (Request::is('admin/expertises/create')) active @endif"
-                                    href="{{ route('admin.expertises.create') }}">Add New Extertise</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="javascript:;" class="dropdown-toggle">
-                            <span class="micon dw dw-mail"></span><span class="mtext">Email Requests</span>
-                        </a>
-                        <ul class="submenu">
-                            <li><a class="@if (Request::is('admin/email-request')) active @endif"
-                                    href="{{ route('admin.email-request') }}">All expertises</a></li>
-                        </ul>
-                    </li>
+                <li class="dropdown">
+                    <a href="javascript:;" class="dropdown-toggle">
+                        <span class="micon dw dw-user"></span><span class="mtext">Users</span>
+                    </a>
+                    <ul class="submenu">
+                        <li><a class="@if (Request::is('admin/users')) active @endif"
+                                href="{{ route('admin.users.index', ['type'=>'expert']) }}">All Expertise</a></li>
+                        <li><a class="@if (Request::is('admin/users')) active @endif"
+                                href="{{ route('admin.users.index', ['type'=>'company']) }}">All Company</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="javascript:;" class="dropdown-toggle">
+                        <span class="micon dw dw-user-2"></span><span class="mtext">Expertises</span>
+                    </a>
+                    <ul class="submenu">
+                        <li><a class="@if (Request::is('admin/expertises')) active @endif"
+                                href="{{ route('admin.expertises.index') }}">All expertises</a></li>
+                        <li><a class="@if (Request::is('admin/expertises/create')) active @endif"
+                                href="{{ route('admin.expertises.create') }}">Add New Extertise</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="javascript:;" class="dropdown-toggle">
+                        <span class="micon dw dw-mail"></span><span class="mtext">Email Requests</span>
+                    </a>
+                    <ul class="submenu">
+                        <li><a class="@if (Request::is('admin/email-request')) active @endif"
+                                href="{{ route('admin.email-request') }}">All expertises</a></li>
+                    </ul>
+                </li>
                 @endif
             </ul>
         </div>
