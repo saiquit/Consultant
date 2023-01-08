@@ -295,9 +295,17 @@
                                                             </div>
                                                             <div class="form-group">
                                                                 <label>Company Type</label>
-                                                                <input class="form-control form-control-lg" type="text"
-                                                                    name="company_type"
-                                                                    value="{{ $profile->company_type ?? old('company_type') }}">
+                                                                <select name="company_type"
+                                                                    class="custom-select2 form-control"
+                                                                    style="width: 100%">
+                                                                    @foreach (App\Models\Service::all('name') as $service)
+                                                                        <option
+                                                                            @if ($service->name == $profile->company_type) selected @endif
+                                                                            value="{{ $service->name ?? $profile->company_type }}">
+                                                                            {{ $service->name }}</option>
+                                                                    @endforeach
+                                                                </select>
+                                                                
                                                             </div>
                                                             <div class="form-group">
                                                                 <label>Current Position</label>
