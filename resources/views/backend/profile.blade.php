@@ -312,8 +312,8 @@
                                                                     value="{{ $profile->depertment ?? old('depertment') }}">
                                                             </div>
                                                             <div class="form-group">
-                                                                <label>Experience</label>
-                                                                <input class="form-control form-control-lg" type="text"
+                                                                <label>Experience (years)</label>
+                                                                <input class="form-control form-control-lg" type="number"
                                                                     name="experience"
                                                                     value="{{ $profile->experience ?? old('experience') }}">
                                                             </div>
