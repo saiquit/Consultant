@@ -32,18 +32,27 @@
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6">
-                                <div class="form-box  mb-30">
-                                    <input type="text" name="name" placeholder="Name">
+                                <div class="form-box mb-30">
+                                    <input type="text" name="name" placeholder="Name" value="">
+                                    @if($errors->has('name'))
+                                    <div class="alert alert-danger">{{ $errors->first('name') }}</div>
+                                    @endif
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6">
                                 <div class="form-box mb-30">
-                                    <input type="text" name="phone" placeholder="Phone">
+                                    <input type="text" name="phone" placeholder="Phone" value="">
+                                    @if($errors->has('phone'))
+                                    <div class="alert alert-danger">{{ $errors->first('phone') }}</div>
+                                    @endif
                                 </div>
                             </div>
                             <div class="col-lg-12 col-md-12">
                                 <div class="form-box mb-30">
                                     <input type="email" name="email" placeholder="Email">
+                                    @if($errors->has('email'))
+                                    <div class="alert alert-danger">{{ $errors->first('email') }}</div>
+                                    @endif
                                 </div>
                             </div>
                             <div class="col-lg-12 col-md-12 mb-30">
@@ -52,10 +61,14 @@
                                         <option value="">Services</option>
                                     </select>
                                 </div>
+                                
                             </div>
                             <div class="col-lg-12 col-md-12 mb-30">
                                 <div class="form-box mb-30">
                                     <input class="" name="message" placeholder="Your message" />
+                                    @if($errors->has('message'))
+                                    <div class="alert alert-danger">{{ $errors->first('message') }}</div>
+                                    @endif
                                 </div>
                             </div>
                             <div class="col-lg-12 col-md-12">

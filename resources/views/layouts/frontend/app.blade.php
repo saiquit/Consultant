@@ -18,13 +18,6 @@
 </head>
 
 <body>
-    {{-- @if (Session::exists('message'))
-        <div class="top_message">
-            <div class="alert alert-success bg-success  text-center">
-                <h4 class="text-white font-weight-bold">{{ Session::get('message') }}</h4>
-            </div>
-        </div>
-    @endif --}}
     {!! Helper::displayAlert() !!}
     <!-- Preloader Start -->
     <div id="preloader-active">

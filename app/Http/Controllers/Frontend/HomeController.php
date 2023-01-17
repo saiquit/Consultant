@@ -29,10 +29,12 @@ class HomeController extends Controller
             'name' => 'string|required',
             'phone' => 'required|numeric',
             'email' => 'required|email',
-            'message' => 'string',
+            'message' => 'string|required',
+            'services' => 'required'
         ]);
+        // dd('up');
         if ($validator->fails()) {
-            return back()->withErrors($validator);
+            return back()->withErrors($validator)->with('message', 'danger|Check the form again');
         }
         DB::table('request_call_backs')->insert([
             'type' => $request->type,
