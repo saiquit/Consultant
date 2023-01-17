@@ -24,6 +24,7 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @if ($email_req->count())
                     @foreach ($email_req as $req)
                         <tr>
                             <td class="table-plus">{{ $req->name }}</td>
@@ -44,6 +45,7 @@
                             </td>
                         </tr>
                     @endforeach
+                    @endif
                 </tbody>
             </table>
         </div>

@@ -42,6 +42,7 @@ class EmailController extends Controller
     public function email_request_show()
     {
         $email_req = DB::table('request_call_backs')->get();
+        // dd($email_req);
         return view('backend.email_request', compact('email_req'));
     }
     public function email_request_complete(Request $request, $id)

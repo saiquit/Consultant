@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Service;
+use App\Models\Profile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -50,9 +51,8 @@ class ServiceController extends Controller
     public function show($slug)
     {
         $service = Service::where('slug', $slug)->firstOrFail();
-        // dd($service->projects);
-        $applied_user_count = DB::table('email_responses')->whereIn('project_id', $service->projects()->pluck('id')->toArray())->count();
-        // dd($service->subitems);
+        // $applied_user_count = DB::table('email_responses')->whereIn('project_id', $service->projects()->pluck('id')->toArray())->count();
+        $applied_user_count = Profile::where('company_type', $service->name)->count();
         return view('frontend.services.show', compact('service', 'applied_user_count'));
     }
 
