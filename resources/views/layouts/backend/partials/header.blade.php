@@ -45,7 +45,7 @@
                 <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown">
                     <span class="user-icon">
                         @if (!auth()->user()->profile or !auth()->user()->profile->img)
-                            <img src="/b/vendors/images/photo1.jpg" alt="">
+                            <img src="/b/vendors/images/default.bmp" alt="">
                         @else
                             <img src="{{ url('/storage/profile/' . auth()->user()->profile->img) }}" alt="">
                         @endif

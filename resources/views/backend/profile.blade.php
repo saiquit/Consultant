@@ -33,10 +33,10 @@
                             <a href="modal" data-toggle="modal" data-target="#modal" class="edit-avatar"><i
                                     class="fa fa-pencil"></i></a>
                             @if ($user->type == 'expert')
-                                <img src="@if ($user->profile->img) {{ url('/storage/profile/' . $user->profile->img) }} @else /b/vendors/images/photo1.jpg @endif"
+                                <img src="@if ($user->profile->img) {{ url('/storage/profile/' . $user->profile->img) }} @else /b/vendors/images/default.bmp @endif"
                                     alt="" class="avatar-photo">
                             @else
-                                <img src="@if ($user->company_profile->img) {{ url('/storage/profile/' . $user->company_profile->img) }} @else /b/vendors/images/photo1.jpg @endif"
+                                <img src="@if ($user->company_profile->img) {{ url('/storage/profile/' . $user->company_profile->img) }} @else /b/vendors/images/default.bmp @endif"
                                     alt="" class="avatar-photo">
                             @endif
 

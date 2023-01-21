@@ -6,7 +6,7 @@
             <div class="row">
                 <div class="col-md-12 col-sm-12">
                     <div class="title pull-left d-flex align-items-center">
-                        <img src="@if ($service->icon) {{ url('/storage/service/icons/' . $service->icon) }} @else /b/vendors/images/photo1.jpg @endif"
+                        <img src="@if ($service->icon) {{ url('/storage/service/icons/' . $service->icon) }} @else /b/vendors/images/default.bmp @endif"
                             alt="" style="height: 50px; width: 50px" class=" mr-2">
                         <h4>{{ $service->name }}</h4>
                     </div>
