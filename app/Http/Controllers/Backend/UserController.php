@@ -112,8 +112,8 @@ class UserController extends Controller
     {
         if ($user->type == 'expert') {
             $user->profile()->delete();
-            $user->expertises()->delete();
-            $user->projects()->delete();
+            $user->expertises()->detach();
+            $user->projects()->detach();
             $user->email_receivers()->delete();
             $user->delete();
         }
