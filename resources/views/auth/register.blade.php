@@ -34,8 +34,8 @@
                                 <div class="form-group">
                                     <select class="custom-select2 form-control" name="type"
                                         style="width: 100%; height: 38px;">
-                                        <option value="company">Company</option>
                                         <option value="expert">Expert</option>
+                                        <option value="company">Company</option>
                                     </select>
                                 </div>
                             </div>
