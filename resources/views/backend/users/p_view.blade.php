@@ -115,7 +115,7 @@
             </div>
             <div class="col-sm-12 col-md-12 mb-30">
                 <div class="card card-box">
-                    <h5 class="card-header weight-500">Previous Organization</h5>
+                    <h5 class="card-header weight-500">Previous Handling Product (Like Cake, Noodles, etc.)</h5>
                     <div class="card-body">
                         <h5 class="card-title">{{ $profile->previous_organization }}</h5>
                     </div>
@@ -123,7 +123,7 @@
             </div>
             <div class="col-sm-12 col-md-12 mb-30">
                 <div class="card card-box">
-                    <h5 class="card-header weight-500">Present Organization</h5>
+                    <h5 class="card-header weight-500">Present Handling Product (Like Cake, Noodles, etc.)</h5>
                     <div class="card-body">
                         <h5 class="card-title">{{ $profile->present_organization }}</h5>
                     </div>

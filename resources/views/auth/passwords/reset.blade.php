@@ -1,7 +1,22 @@
-@extends('layouts.app')
+@extends('layouts.auth.app')
 
 @section('content')
+
 <div class="container">
+    <div class="login-header box-shadow mb-20">
+        <div class="container-fluid d-flex justify-content-between align-items-center">
+            <div class="brand-logo">
+                <a href="{{ route('home') }}">
+                    <img src="/b/vendors/images/deskapp-logo.svg" alt="">
+                </a>
+            </div>
+            <div class="login-menu">
+                <ul>
+                    <li><a href="{{ route('register') }}">Register</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">

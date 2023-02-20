@@ -4,8 +4,9 @@
     <div class="login-header box-shadow">
         <div class="container-fluid d-flex justify-content-between align-items-center">
             <div class="brand-logo">
-                <a href="{{ route('home') }}">
-                    <img src="/b/vendors/images/deskapp-logo.svg" alt="">
+                <a class="text-dark font-bold" href="{{ route('home') }}">
+                    XpertgroupBD
+                    {{-- <img src="/b/vendors/images/deskapp-logo.svg" alt=""> --}}
                 </a>
             </div>
             <div class="login-menu">
@@ -65,7 +66,7 @@
                                     </div>
                                 </div>
                                 <div class="col-6">
-                                    <div class="forgot-password"><a href="forgot-password.html">Forgot Password</a>
+                                    <div class="forgot-password"><a href="{{ route('password.request') }}">Forgot Password</a>
                                     </div>
                                 </div>
                             </div>

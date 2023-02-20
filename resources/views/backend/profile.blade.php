@@ -282,13 +282,13 @@
                                                         <div class="card-box overflow-hidden p-4 mb-3">
                                                             <h4 class="text-blue h5 mb-20">Career</h4>
                                                             <div class="form-group">
-                                                                <label>Previous Organization</label>
+                                                                <label>Previous Handling Product (Like Cake, Noodles, etc.)</label>
                                                                 <input class="form-control form-control-lg" type="text"
                                                                     name="previous_organization"
                                                                     value="{{ $profile->previous_organization ?? old('previous_organization') }}">
                                                             </div>
                                                             <div class="form-group">
-                                                                <label>Present Organization</label>
+                                                                <label>Present Handling Product (Like Cake, Noodles, etc.)</label>
                                                                 <input class="form-control form-control-lg" type="text"
                                                                     name="present_organization"
                                                                     value="{{ $profile->present_organization ?? old('present_organization') }}">
